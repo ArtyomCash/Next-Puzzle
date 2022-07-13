@@ -1,0 +1,11 @@
+@use 'assets/styles/_vars' as *;
+
+.wrapperProps {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {}

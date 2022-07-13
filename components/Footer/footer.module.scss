@@ -1,0 +1,105 @@
+@use 'assets/styles/_vars' as *;
+@use 'assets/styles/_mixins' as *;
+
+.wrapper {
+  position: relative;
+  padding: 88px 0;
+  color: $white;
+  background: $black;
+}
+
+.container {
+  @extend %wrapper;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 68px;
+  @media (max-width: 479px) {
+    flex-direction: column;
+  }
+}
+
+.dscr {
+  @extend %dscr;
+}
+
+.aboutDscrBox {
+  @media (min-width: 480px) {
+    max-width: 350px;
+    width: 100%;
+    margin-right: 128px;
+  }
+}
+
+.logoLink {
+  display: inline-block;
+  margin-bottom: 24px;
+  background: none;
+}
+
+.menuBox {
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-start;
+}
+
+.nav {
+  @media (max-width: 959px) {
+    display: none;
+  }
+
+  @media (min-width: 960px) {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 384px;
+    width: 100%;
+    margin-top: -5px;
+  }
+
+  &Item {
+    width: 50%;
+    line-height: 20px;
+    padding: 5px 0;
+    margin-bottom: 14px;
+  }
+}
+
+.copyDscr {
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.3;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.support {
+  margin-top: -5px;
+
+  &Link {
+    display: block;
+    line-height: 20px;
+    padding: 5px 0;
+    margin-bottom: 14px;
+  }
+
+  &Socials {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100px;
+    padding-top: 5px;
+  }
+}
+.menuItem {
+  display: inline-block;
+  margin-right: 48px;
+  margin-bottom: 18px;
+  background: none;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 28px;
+  color: $white;
+}

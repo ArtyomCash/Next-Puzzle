@@ -1,0 +1,16 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "prefer-const": "error",
+    "react/display-name": "off",
+    "react-hooks/exhaustive-deps": "off"
+  }
+}

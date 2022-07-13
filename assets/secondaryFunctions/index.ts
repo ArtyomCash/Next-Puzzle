@@ -1,0 +1,1 @@
+export { scrollToBlock } from './scrollToBlock';

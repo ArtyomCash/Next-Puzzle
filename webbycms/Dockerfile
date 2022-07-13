@@ -1,0 +1,1 @@
+FROM webbydnd/webbycms:latest

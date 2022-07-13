@@ -1,0 +1,75 @@
+@use 'assets/styles/_vars' as *;
+@use 'assets/styles/_mixins' as *;
+
+.item {
+  position: relative;
+  z-index: 1;
+  padding: 35px 10px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 3px;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    content: '';
+    opacity: 0.05;
+    background: linear-gradient(130.82deg, #7f74cc 11.56%, #c195df 81.16%);
+  }
+}
+
+.image {
+  width: 176px;
+  height: 176px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.01);
+  border-radius: 50%;
+
+  &::before {
+    position: absolute;
+    width: 144px;
+    height: 144px;
+    display: block;
+    content: '';
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    border-radius: 50%;
+  }
+
+  &::after {
+    position: absolute;
+    width: 112px;
+    height: 112px;
+    display: block;
+    content: '';
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 50%;
+  }
+}
+
+.name {
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.position {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 20px;
+  background: $sky;
+  background-size: cover;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
