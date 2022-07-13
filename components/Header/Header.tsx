@@ -9,7 +9,7 @@ import { menuItemType } from 'menuItemType/menuType';
 
 const mockMenu: menuItemType[] = [
   { name: 'Puzzle-card', id: 'about', href: '/puzzle-card', className: 'menuItem' },
-  { name: 'Projects', id: 'projects', href: '/cases', className: 'menuItem' },
+  { name: 'Puzzles', id: 'projects', href: '/puzzles', className: 'menuItem' },
   { name: 'Our services', id: 'services', href: '/services', className: 'menuItem' },
   { name: 'Industries', id: 'industries', href: '/industries', className: 'menuItem' },
   { name: 'Technologies', id: 'technologies', href: '/projects', className: 'menuItem' },
