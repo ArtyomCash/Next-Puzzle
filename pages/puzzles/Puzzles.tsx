@@ -35,11 +35,12 @@ const Puzzles: NextPage = () => {
     },
   ]);
 
+  // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
 
 
-  const dragOverHandler = (e: any, board: any, item: any) => {
+  const dragOverHandler = (e: any) => {
     e.preventDefault();
     if (e.target.className == 'puzzles_item__WeSE_') { // поиск по классу не надёжный добавить id
         e.target.style.boxShadow = '0 4px 3px gray';
@@ -50,15 +51,57 @@ const Puzzles: NextPage = () => {
     e.target.style.boxShadow = 'none'
   };
 
-  const dragStartHandler =(e: any) => {
-
+  const dragStartHandler =(e: any, board: any, item: any) => {
+    setCurrentBoard(board);
+    setCurrentItem(item);
+    console.log('drag', board);
   };
 
   const dragEndHandler =(e: any) => {
     e.target.style.boxShadow = 'none'
   };
   const dropHandler =(e: any, board: any, item: any) => {
-    e.preventDefault()
+    e.preventDefault();
+    // получаем индекс в массиве у текущей карточки
+    const currentIndex = currentBoard.items.indexOf(currentItem);
+    // удаляем элемент с текущей доски
+    currentBoard.items.splice(currentIndex, 1);
+    // удаляем индекс элемента над которым держим карточку
+    const dropIndex = board.items.indexOf(item);
+    board.items.splice(dropIndex + 1, 0, currentItem); //currentItem - вставляем карточку после удалённых элементов
+    // setBoards - вызываем функцию для того чтобы изменить состояние
+    setBoards(boards.map(b => {
+      if (b.id === board.id) {
+        return board;
+      }
+      if (b.id === currentBoard.id) {
+        return currentBoard;
+      }
+      return b;
+    }));
+    e.target.style.boxShadow = 'none'
+
+  };
+
+  const dropCardHandler = (e: any, board: any) => {
+    // добавляем задачу в новую доску
+    board.items.push(currentItem);
+    const currentIndex = currentBoard.items.indexOf(currentItem);
+    // удаляем элемент с текущей доски
+    currentBoard.items.splice(currentIndex, 1);
+
+    // функция состояния
+    setBoards(boards.map(b => {
+      if (b.id === board.id) {
+        return board;
+      }
+      if (b.id === currentBoard.id) {
+        return currentBoard;
+      }
+      return b;
+    }));
+    e.target.style.boxShadow = 'none'
+    console.log('drop', board);
   };
 
   return (
@@ -70,13 +113,16 @@ const Puzzles: NextPage = () => {
       </Head>
       <div className={styles.app}>
         {boards.map((board, boardsIndex) => (
-          <div className={styles.board} key={`boardsIndex_${boardsIndex}`}>
+          <div className={styles.board} key={`boardsIndex_${boardsIndex}`}
+               onDragOver={(e) => dragOverHandler(e)}
+               onDrop={(e) => dropCardHandler(e, board)}
+          >
             <div className={styles.boardTitle}>{board.title}</div>
             {board.items.map((item, itemItem) => (
               <div
-                onDragOver={(e) => dragOverHandler(e, board, item)}
+                onDragOver={(e) => dragOverHandler(e)}
                 onDragLeave={e => dragLeaveHandler(e)}
-                onDragStart={(e) => dragStartHandler(e)}
+                onDragStart={(e) => dragStartHandler(e, board, item)}
                 onDragEnd={(e) => dragEndHandler(e)}
                 onDrop={(e) => dropHandler(e, board, item)}
                 // className={styles.todo}
