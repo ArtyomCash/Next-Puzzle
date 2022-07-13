@@ -55,8 +55,8 @@ const Header: NextPage = () => {
         </label>
         <div className={styles.background}>&nbsp;</div>
         <nav className={styles.menu}>
-          {mockMenu.map((item) => (
-              <Link className={styles['menuItem']} href={item.href}>
+          {mockMenu.map((item, index) => (
+              <Link className={styles['menuItem']} href={item.href} key={index}>
                 <a className={styles['menuItem']}>
                   <span>{item.name}</span>
                 </a>

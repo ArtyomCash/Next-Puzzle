@@ -73,7 +73,7 @@ const PuzzleCard: NextPage = () => {
   return (
     <div id='up' className={styles.about}>
       <Head>
-        <title>Flexyti About Us</title>
+        <title>Puzzles Card</title>
         <meta name='Description of flexyti About us' content='Content of flexyti About us' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
