@@ -12,7 +12,7 @@ import eLearning from 'assets/Industries/e-learning.jpg';
 import delivery from 'assets/Industries/delivery.jpg';
 import eCommerce from 'assets/Industries/e-commerce_2.jpg';
 import fintech from 'assets/Industries/fintech.jpg';
-import HomeStoriesBlock from '../../components/Stories';
+// import HomeStoriesBlock from '../../components/Stories';
 
 const Industries: NextPage = () => {
   const otherImgArray = [
@@ -92,7 +92,7 @@ const Industries: NextPage = () => {
         ))}
       </section>
       <div className={styles.successStoriesBox}>
-        <HomeStoriesBlock />
+        {/*<HomeStoriesBlock />*/}
       </div>
     </>
   );

@@ -5,9 +5,10 @@ import useSWR from 'swr';
 // import Footer from 'components/Footer';
 import Preloader from '../preloader';
 import styles from './wrapper-props.module.scss';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { PageModel } from 'assets/CMStypes';
+import  Header from '../Header';
 
 const getPageBySlug = (slug: string, pages: PageModel[]) => {
   const found = pages.filter((page) => page.slug === slug);
@@ -54,7 +55,7 @@ const WrapperProps: NextPage = ({ children }) => {
     {/*<AppContext.Provider value={}>*/}
       <div className={styles.wrapperProps}>
         <div style={!loading ? { display: 'block' } : { display: 'none' }} className={styles.box}>
-          {/*<Header />*/}
+          <Header />
           <main className={styles.main}>{children}</main>
           {/*<Footer />*/}
         </div>

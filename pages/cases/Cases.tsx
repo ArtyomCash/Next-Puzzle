@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import styles from './cases.module.scss';
 import Head from 'next/head';
-import HomeIndustriesBlock from 'components/HomeComponents/HomeIndustriesBlock';
-import HomeStoriesBlock from 'components/Stories';
+// import HomeIndustriesBlock from 'components/HomeComponents/HomeIndustriesBlock';
+// import HomeStoriesBlock from 'components/Stories';
 
 import Project1 from '../../assets/Projects/online-doctor.png';
 import Project2 from '../../assets/Projects/eco-driving.png';
@@ -68,10 +68,10 @@ const Cases: NextPage = () => {
             <LinkButton href='/projects' dark name='Load More' />
           </div>
         </div>
-        <HomeIndustriesBlock />
+        {/*<HomeIndustriesBlock />*/}
       </div>
       <div className={styles.bottomBlockWrap}>
-        <HomeStoriesBlock />
+        {/*<HomeStoriesBlock />*/}
       </div>
     </div>
   );

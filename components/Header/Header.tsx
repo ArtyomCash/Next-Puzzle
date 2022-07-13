@@ -8,7 +8,7 @@ import { useRef } from 'react';
 import { menuItemType } from 'menuItemType/menuType';
 
 const mockMenu: menuItemType[] = [
-  { name: 'About us', id: 'about', href: '/about', className: 'menuItem' },
+  { name: 'Puzzle-card', id: 'about', href: '/puzzle-card', className: 'menuItem' },
   { name: 'Projects', id: 'projects', href: '/cases', className: 'menuItem' },
   { name: 'Our services', id: 'services', href: '/services', className: 'menuItem' },
   { name: 'Industries', id: 'industries', href: '/industries', className: 'menuItem' },
@@ -56,9 +56,14 @@ const Header: NextPage = () => {
         <div className={styles.background}>&nbsp;</div>
         <nav className={styles.menu}>
           {mockMenu.map((item) => (
-            <label className={styles['menuItem']} htmlFor='navi-toggle' key={uuid()} onClick={() => handleClick(item)}>
+              <Link className={styles['menuItem']} href={item.href}>
+                <a className={styles['menuItem']}>
+                  <span>{item.name}</span>
+                </a>
+              </Link>
+            /*<label className={styles['menuItem']} htmlFor='navi-toggle' key={uuid()} onClick={() => handleClick(item)}>
               <span>{item.name}</span>
-            </label>
+            </label>*/
           ))}
         </nav>
       </section>
