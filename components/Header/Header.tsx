@@ -56,11 +56,11 @@ const Header: NextPage = () => {
         <div className={styles.background}>&nbsp;</div>
         <nav className={styles.menu}>
           {mockMenu.map((item, index) => (
-              <Link className={styles['menuItem']} href={item.href} key={index}>
-                <a className={styles['menuItem']}>
-                  <span>{item.name}</span>
-                </a>
-              </Link>
+            <Link className={styles['menuItem']} href={item.href} key={index}>
+              <a className={styles['menuItem']}>
+                <span>{item.name}</span>
+              </a>
+            </Link>
             /*<label className={styles['menuItem']} htmlFor='navi-toggle' key={uuid()} onClick={() => handleClick(item)}>
               <span>{item.name}</span>
             </label>*/
