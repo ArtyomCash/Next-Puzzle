@@ -1,38 +1,42 @@
 @use 'assets/styles/_vars' as *;
 @use 'assets/styles/_mixins' as *;
 
+.wrapper {
+  display: flex;
+  //justify-content: center;
+  width: 100%;
+  padding: 20px 100px;
+}
 .app {
-  width: 100vw;
-  height: 100vh;
+  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #333234;
+  margin-right: 100px;
 }
-.wrapper {
-  display: flex;
-}
+
 .board,
 .boardWrapper,
 .boardSecond,
 .boardWrapperSecond {
-  //min-width: 300px;
-  //min-height: 400px;
-  width: 100px;
-  height: 100px;
-  border: 5px solid lightgray;
-  //padding: 20px 10px;
-  border-radius: 12px;
-  margin: 10px;
+  width: 200px;
+  height: 200px;
+  border: 1px solid lightgray;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 .boardWrapper {
-  //width: 100%;
   height: 100%;
-  //display: none;
+  width: 270px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
+
 .boardWrapperSecond {
   width: 100%;
   display: none;
@@ -47,10 +51,13 @@
 .desktop {
   display: flex;
   flex-wrap: wrap;
+  background-color: #333234;
+  width: 800px;
+  height: 800px;
 }
 .item {
   cursor: grab;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 
