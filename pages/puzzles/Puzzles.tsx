@@ -205,6 +205,7 @@ const Puzzles: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
+    console.log('dropHandler', board);
   };
 
   const dropCardHandler = (e: any, board: any) => {
