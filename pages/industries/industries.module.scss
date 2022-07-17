@@ -9,7 +9,7 @@
 }
 .storagePuzzle {
   height: 700px;
-  overflow: hidden;
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 0;
   }
@@ -19,6 +19,7 @@
   width: 100px;
   height: 100px;
   border: 2px solid gainsboro;
+  cursor: grab;
 }
 .desktop {
   display: flex;
