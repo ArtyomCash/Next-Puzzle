@@ -57,109 +57,126 @@ const Puzzles: NextPage = () => {
         { id: 15, title: 'Отрендоорить', img: wood_15.src },
         { id: 16, title: 'Отрендоорить', img: wood_16.src },
       ],
+      finishedPuzzle: [],
     },
     {
       id: 2,
       title: '',
       // img: wood_02.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 3,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 4,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 5,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 6,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 7,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 8,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 9,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 10,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 11,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 12,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 13,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 14,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 15,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 16,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
     {
       id: 17,
       title: '',
       // img: wood_03.src,
       items: [],
+      finishedPuzzle: [],
     },
   ];
   // массив досок
   const [boards, setBoards] = useState(arrayImg);
 
   // состояние для текущей доски и для текущего состояния
-  const [currentBoard, setCurrentBoard] = useState(null);
+  const [currentBoard, setCurrentBoard] = useState<any>(null);
   const [currentItem, setCurrentItem] = useState(null);
 
   const dragOverHandler = (e: any) => {
@@ -268,15 +285,15 @@ const Puzzles: NextPage = () => {
           ))}
         </div>
         <div className={styles.desktop}>
-          {boards.map((board, boardsIndex) => (
+          {boards.map((board, boardsIndexSecond) => (
             <>
               <div
-                className={boardsIndex === 0 ? styles.boardWrapperSecond : styles.boardSecond}
-                key={`boardsIndex_${boardsIndex}`}
+                className={boardsIndexSecond === 0 ? styles.boardWrapperSecond : styles.boardSecond}
+                key={`boardsIndexSecond${boardsIndexSecond}`}
                 onDragOver={(e) => dragOverHandler(e)}
                 onDrop={(e) => dropCardHandler(e, board)}>
                 <div className={styles.boardTitle}>{board.title}</div>
-                {board.items.map((item, itemItem) => (
+                {board.items.map((item, itemBoard) => (
                   <div
                     onDragOver={(e) => dragOverHandler(e)}
                     onDragLeave={(e) => dragLeaveHandler(e)}
@@ -284,7 +301,7 @@ const Puzzles: NextPage = () => {
                     onDragEnd={(e) => dragEndHandler(e)}
                     onDrop={(e) => dropHandler(e, board, item)}
                     draggable={true}
-                    key={`itemItem${itemItem}`}
+                    key={`itemBoard${itemBoard}`}
                     className={styles.item}>
                     <div className={styles.imgFigure}>
                       <Image width={200} height={200} src={item.img} alt='Business analysis' />
