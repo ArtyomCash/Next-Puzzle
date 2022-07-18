@@ -227,11 +227,12 @@ const Puzzles: NextPage = () => {
 
   const dropCardHandler = (e: any, board: any) => {
     // добавляем задачу в новую доску
-    board.items.push(currentItem);
+    board.finishedPuzzle.push(currentItem);
+    console.log('currentItem777777777777', currentItem);
     const currentIndex = currentBoard.items.indexOf(currentItem);
     // удаляем элемент с текущей доски
+    currentBoard.finishedPuzzle.splice(currentIndex, 1);
     currentBoard.items.splice(currentIndex, 1);
-
     // функция состояния
     setBoards(
       boards.map((b) => {
@@ -260,20 +261,20 @@ const Puzzles: NextPage = () => {
           {boards.map((board, boardsIndex) => (
             <>
               <div
-                className={boardsIndex === 0 ? styles.boardWrapper : styles.board}
                 key={`boardsIndex_${boardsIndex}`}
+                className={boardsIndex === 0 ? styles.boardWrapper : styles.board}
                 onDragOver={(e) => dragOverHandler(e)}
                 onDrop={(e) => dropCardHandler(e, board)}>
                 <div className={styles.boardTitle}>{board.title}</div>
                 {board.items.map((item, itemItem) => (
                   <div
+                    key={`itemItem${itemItem}`}
                     onDragOver={(e) => dragOverHandler(e)}
                     onDragLeave={(e) => dragLeaveHandler(e)}
                     onDragStart={(e) => dragStartHandler(e, board, item)}
                     onDragEnd={(e) => dragEndHandler(e)}
                     onDrop={(e) => dropHandler(e, board, item)}
                     draggable={true}
-                    key={`itemItem${itemItem}`}
                     className={styles.item}>
                     <div className={styles.imgFigure}>
                       <Image width={200} height={200} src={item.img} alt='Business analysis' />
@@ -288,20 +289,20 @@ const Puzzles: NextPage = () => {
           {boards.map((board, boardsIndexSecond) => (
             <>
               <div
+                key={`boardsIndexSecond_${boardsIndexSecond}`}
                 className={boardsIndexSecond === 0 ? styles.boardWrapperSecond : styles.boardSecond}
-                key={`boardsIndexSecond${boardsIndexSecond}`}
                 onDragOver={(e) => dragOverHandler(e)}
                 onDrop={(e) => dropCardHandler(e, board)}>
-                <div className={styles.boardTitle}>{board.title}</div>
-                {board.items.map((item, itemBoard) => (
+                {/*<div className={styles.boardTitle}>{board.title}</div>*/}
+                {board.finishedPuzzle.map((item, itemBoard) => (
                   <div
+                    key={`itemBoard_${itemBoard}`}
                     onDragOver={(e) => dragOverHandler(e)}
                     onDragLeave={(e) => dragLeaveHandler(e)}
                     onDragStart={(e) => dragStartHandler(e, board, item)}
                     onDragEnd={(e) => dragEndHandler(e)}
                     onDrop={(e) => dropHandler(e, board, item)}
                     draggable={true}
-                    key={`itemBoard${itemBoard}`}
                     className={styles.item}>
                     <div className={styles.imgFigure}>
                       <Image width={200} height={200} src={item.img} alt='Business analysis' />

@@ -28,27 +28,27 @@ const puzzleArray = [
       assembled: true,
       arrayStoragePuzzle: [
         {
-          idPuzzlePiece: 0,
+          // idPuzzlePiece: 0,
           imgPuzzlePiece: wood_01.src,
         },
         {
-          idPuzzlePiece: 1,
+          // idPuzzlePiece: 1,
           imgPuzzlePiece: wood_02.src,
         },
         {
-          idPuzzlePiece: 2,
+          // idPuzzlePiece: 2,
           imgPuzzlePiece: wood_03.src,
         },
         {
-          idPuzzlePiece: 3,
+          // idPuzzlePiece: 3,
           imgPuzzlePiece: wood_04.src,
         },
         {
-          idPuzzlePiece: 4,
+          // idPuzzlePiece: 4,
           imgPuzzlePiece: wood_05.src,
         },
         {
-          idPuzzlePiece: 5,
+          // idPuzzlePiece: 5,
           imgPuzzlePiece: wood_06.src,
         },
         {
@@ -56,39 +56,39 @@ const puzzleArray = [
           imgPuzzlePiece: wood_07.src,
         },
         {
-          idPuzzlePiece: 7,
+          // idPuzzlePiece: 7,
           imgPuzzlePiece: wood_08.src,
         },
         {
-          idPuzzlePiece: 8,
+          // idPuzzlePiece: 8,
           imgPuzzlePiece: wood_09.src,
         },
         {
-          idPuzzlePiece: 9,
+          // idPuzzlePiece: 9,
           imgPuzzlePiece: wood_10.src,
         },
         {
-          idPuzzlePiece: 10,
+          // idPuzzlePiece: 10,
           imgPuzzlePiece: wood_11.src,
         },
         {
-          idPuzzlePiece: 11,
+          // idPuzzlePiece: 11,
           imgPuzzlePiece: wood_12.src,
         },
         {
-          idPuzzlePiece: 12,
+          // idPuzzlePiece: 12,
           imgPuzzlePiece: wood_13.src,
         },
         {
-          idPuzzlePiece: 13,
+          // idPuzzlePiece: 13,
           imgPuzzlePiece: wood_14.src,
         },
         {
-          idPuzzlePiece: 14,
+          // idPuzzlePiece: 14,
           imgPuzzlePiece: wood_15.src,
         },
         {
-          idPuzzlePiece: 15,
+          // idPuzzlePiece: 15,
           imgPuzzlePiece: wood_16.src,
         },
       ],
@@ -147,6 +147,7 @@ const puzzleArray = [
 ];
 
 const arrayImg = puzzleArray[1].storagePuzzle?.arrayStoragePuzzle;
+const collected = puzzleArray[1].storagePuzzle?.collectedElements;
 
 /*const replacementPieces = () => {
   arrayImg?.forEach((puzzle) => {
@@ -158,31 +159,52 @@ const arrayImg = puzzleArray[1].storagePuzzle?.arrayStoragePuzzle;
 };
 replacementPieces();*/
 
-console.log('puzzleArray>>>', puzzleArray[1].storagePuzzle?.arrayStoragePuzzle);
+// console.log('puzzleArray>>>', puzzleArray[1].storagePuzzle);
 
 const Industries: NextPage = () => {
   const [currentPuzzle, setCurrentPuzzle] = useState(puzzleArray);
+  console.log('сейчас в useSate', currentPuzzle);
   const dragOverHandler = (e: any) => {
     e.preventDefault();
+    // console.log('dragOverHandler');
   };
   const dragLeaveHandler = () => {};
   const dragStartHandler = (e: any, puzzle: any) => {
+    // то элемент который взял, записываем в useState
     setCurrentPuzzle(puzzle);
-    console.log('drag', puzzle);
+    // удаляем этот элемент из массива
+    // const currentIndex = arrayImg?.indexOf(puzzle);
+    // setInterval(() => arrayImg?.splice(puzzle, 1), 100);
+    console.log('Элемент который взял', puzzle);
+    arrayImg?.splice(puzzle, 1);
   };
-  const dragEndHandler = () => {};
+  const dragEndHandler = (e: any) => {
+    e.target.style.boxShadow = 'none';
+  };
   const dropHandler = (e: any, puzzle: any) => {
+    // на какой элемент кидаешь пазл
+    // console.log('e', e.dataTransfer);
+    // console.log('111111');
     e.preventDefault();
-
+    console.log('на какой элемент кидаешь пазл', puzzle);
     // получаем индекс в массиве у текущей карточки
-    const currentIndex = arrayImg?.indexOf(puzzle);
-    console.log('currentIndex', currentIndex);
-    console.log('currentPuzzle', currentPuzzle);
+    // const currentIndex = arrayImg?.indexOf(puzzle);
+    // console.log('currentIndex', currentIndex);
+    // console.log('currentPuzzle', currentPuzzle);
     // удаляем элемент с текущей доски
-    arrayImg?.splice(currentIndex, 1, currentPuzzle);
+    // arrayImg?.splice(currentIndex, 1, currentPuzzle);
 
-    console.log('puzzleArray остаток', puzzleArray[1].storagePuzzle?.arrayStoragePuzzle);
-    console.log('что в useState', currentPuzzle);
+    // const indexCurrentPuzzle = arrayImg?.indexOf(currentPuzzle);
+
+    // arrayImg?.splice(indexCurrentPuzzle + 1, 0, currentIndex);
+    // найти 2 индекса и поменять местами !!!!!!!!!!!!!!!!
+
+    /* const a = ['a', 'b', 'c', 'e', 'd'];
+
+    [a[3], a[4]] = [a[4], a[3]]; //[ 'a', 'b', 'c', 'd', 'e' ]*/
+
+    // console.log('puzzleArray остаток', puzzleArray[1].storagePuzzle?.arrayStoragePuzzle);
+    // console.log('что в useState', currentPuzzle);
     // setCurrentPuzzle()
     /*if (currentIndex !== -1) {
       arrayImg?.splice(currentIndex, 1);
@@ -195,9 +217,32 @@ const Industries: NextPage = () => {
     );*/
   };
 
+  const dragPuzzleOverHandler = (e: any) => {
+    // добавляем новый кусочек пазла
+    console.log('добавляем новый кусочек пазла');
+    // currentPuzzle.push(collected);
+    // const currentIndex = currentPuzzle.indexOf(collected);
+    // currentPuzzle.splice(currentIndex, 1);
+  };
+
+  const dropPuzzleHandler = (e: any, puzzleDesktop: any) => {
+    console.log('22222222');
+    puzzleDesktop.push(currentPuzzle);
+  };
+
+  // console.log('collected>>>>', collected);
+
   return (
-    <section className={styles.array}>
-      <div className={styles.storagePuzzle}>
+    <section
+      className={styles.array}
+      onDragOver={(e) => dragOverHandler(e)}
+      // onDrop={(e) => dropHandler(e)}
+      // onDragLeave={(e) => dragLeaveHandler(e)}
+      // onDragStart={(e) => dragStartHandler(e)}
+      // onDragEnd={(e) => dragEndHandler(e)}
+      draggable={true}
+    >
+      {/*<div className={styles.storagePuzzle}>
         {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
           <div
             className={styles.imgPuzzle}
@@ -225,9 +270,52 @@ const Industries: NextPage = () => {
                 // onDragLeave={(e) => dragLeaveHandler(e)}
                 // onDragStart={(e) => dragStartHandler(e, puzzle)}
                 // onDragEnd={(e) => dragEndHandler(e)}
-                // onDrop={(e) => dropHandler(e, puzzle)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzle)}
                 draggable={true}>
                 <Image width={200} height={200} src={puzzle.imgPuzzlePiece} alt='' />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>*/}
+
+      <div className={styles.storagePuzzle}>
+        {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
+          <div
+            className={styles.imgPuzzle}
+            key={puzzleIndex}
+            onDragStart={(e) => dragStartHandler(e, puzzle)}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e, puzzle)}
+            draggable={true}>
+            <Image width={200} height={200} src={puzzle.imgPuzzlePiece} alt='' />
+          </div>
+        ))}
+      </div>
+      <div className={styles.desktop}>
+        {puzzleArray[1].storagePuzzle?.collectedElements.map((puzzleDesktop, puzzleIndex) => (
+          <div key={puzzleIndex}>
+            {puzzleDesktop.imgPuzzlePiece === '' ? (
+              <div
+                className={styles.imgPuzzle}
+                draggable={true}
+                // onDragOver={(e) => dragPuzzleOverHandler(e, puzzle)}
+                // onDragLeave={(e) => dragLeaveHandler(e)}
+                // onDragStart={(e) => dragStartHandler(e, puzzle)}
+                // onDragEnd={(e) => dragEndHandler(e)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzleDesktop)}
+              />
+            ) : (
+              <div
+                className={styles.imgPuzzle}
+                key={puzzleIndex}
+                onDragOver={(e) => dragPuzzleOverHandler(e, puzzleDesktop)}
+                onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragStartHandler(e, puzzleDesktop)}
+                onDragEnd={(e) => dragEndHandler(e)}
+                // onDrop={(e) => dropPuzzleHandler(e, puzzle)}
+                draggable={true}>
+                <Image width={200} height={200} src={puzzleDesktop.imgPuzzlePiece} alt='' />
               </div>
             )}
           </div>
