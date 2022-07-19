@@ -1,7 +1,7 @@
 @use 'assets/styles/_vars' as *;
 @use 'assets/styles/_mixins' as *;
 
-/*.array {
+.array {
   display: flex;
   justify-content: space-between;
   max-width: 700px;
@@ -28,52 +28,6 @@
   flex-wrap: wrap;
   align-items: center
 }
-.desktopPuzzle {}*/
+.desktopPuzzle {}
 
 //-----------------------------------------
-.containerDrag {
-  text-align: center;
-  display: flex;
-}
-
-.wip {
-  //position: absolute;
-  width: 150px;
-  height: 100vh;
-  left: 0;
-  top: 10px;
-  background-color: #EEEEEE;
-  border-right: 1px dotted;
-}
-
-.headerSecond {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  background-color: #E0E0E0;
-  width:100%;
-}
-
-.taskHeader {
-  display: inline-block;
-  background-color: skyblue;
-  width:100%;
-}
-
-.droppable {
-  //position: absolute;
-  width: 150px;
-  height: 100vh;
-  right: 0;
-  top: 10px;
-  background-color: #9E9E9E;
-  border-left: 1px dotted;
-}
-
-.draggable {
-  width: 100px;
-  height: 100px;
-  background-color: yellow;
-  margin: 5px auto;
-  line-height: 5em;
-}

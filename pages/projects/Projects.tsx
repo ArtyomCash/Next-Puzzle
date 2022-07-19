@@ -1,142 +1,383 @@
 import type { NextPage } from 'next';
-import Image from 'next/image';
 import styles from './projects.module.scss';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import timo from 'assets/Projects/timo.jpg';
-import timo2 from 'assets/Projects/timo2.png';
-import ProjectWhatWeHave from '../../components/ProjectWhatWeHave';
+import React, { useState } from 'react';
 
-type IDataTim = {
-  title: string;
-  subTitle: string;
-};
+import wood_01 from 'assets/Puzzle/wood/wood_01.jpg';
+import wood_02 from 'assets/Puzzle/wood/wood_02.jpg';
+import wood_03 from 'assets/Puzzle/wood/wood_03.jpg';
+import wood_04 from 'assets/Puzzle/wood/wood_04.jpg';
+import wood_05 from 'assets/Puzzle/wood/wood_05.jpg';
+import wood_06 from 'assets/Puzzle/wood/wood_06.jpg';
+import wood_07 from 'assets/Puzzle/wood/wood_07.jpg';
+import wood_08 from 'assets/Puzzle/wood/wood_08.jpg';
+import wood_09 from 'assets/Puzzle/wood/wood_09.jpg';
+import wood_10 from 'assets/Puzzle/wood/wood_10.jpg';
+import wood_11 from 'assets/Puzzle/wood/wood_11.jpg';
+import wood_12 from 'assets/Puzzle/wood/wood_12.jpg';
+import wood_13 from 'assets/Puzzle/wood/wood_13.jpg';
+import wood_14 from 'assets/Puzzle/wood/wood_14.jpg';
+import wood_15 from 'assets/Puzzle/wood/wood_15.jpg';
+import wood_16 from 'assets/Puzzle/wood/wood_16.jpg';
+import Image from 'next/image';
 
-const dataTimeArray: IDataTim[] = [
-  { title: '2013-2016', subTitle: 'Partnership period' },
-  { title: 'USA-Ukraine', subTitle: 'Location' },
-  { title: 'BF "TIMO"', subTitle: 'Customer name' },
-  { title: '8', subTitle: 'Team size' },
+const puzzleArray = [
+  { namePlayer: 'Семён', idPlayer: 1, password: '1' },
+  {
+    storagePuzzle: {
+      idStoragePuzzle: 1,
+      assembled: true,
+      arrayStoragePuzzle: [
+        {
+          idPuzzlePiece: 0,
+          imgPuzzlePiece: wood_01.src,
+        },
+        {
+          idPuzzlePiece: 1,
+          imgPuzzlePiece: wood_02.src,
+        },
+        {
+          idPuzzlePiece: 2,
+          imgPuzzlePiece: wood_03.src,
+        },
+        {
+          idPuzzlePiece: 3,
+          imgPuzzlePiece: wood_04.src,
+        },
+        {
+          idPuzzlePiece: 4,
+          imgPuzzlePiece: wood_05.src,
+        },
+        {
+          idPuzzlePiece: 5,
+          imgPuzzlePiece: wood_06.src,
+        },
+        {
+          idPuzzlePiece: 6,
+          imgPuzzlePiece: wood_07.src,
+        },
+        {
+          idPuzzlePiece: 7,
+          imgPuzzlePiece: wood_08.src,
+        },
+        {
+          idPuzzlePiece: 8,
+          imgPuzzlePiece: wood_09.src,
+        },
+        {
+          idPuzzlePiece: 9,
+          imgPuzzlePiece: wood_10.src,
+        },
+        {
+          idPuzzlePiece: 10,
+          imgPuzzlePiece: wood_11.src,
+        },
+        {
+          idPuzzlePiece: 11,
+          imgPuzzlePiece: wood_12.src,
+        },
+        {
+          idPuzzlePiece: 12,
+          imgPuzzlePiece: wood_13.src,
+        },
+        {
+          idPuzzlePiece: 13,
+          imgPuzzlePiece: wood_14.src,
+        },
+        {
+          idPuzzlePiece: 14,
+          imgPuzzlePiece: wood_15.src,
+        },
+        {
+          idPuzzlePiece: 15,
+          imgPuzzlePiece: wood_16.src,
+        },
+      ],
+      collectedElements: [
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+        {
+          imgPuzzlePiece: '',
+        },
+      ],
+    },
+  },
 ];
 
-const Projects: NextPage = () => {
-  const router = useRouter();
+const arrayImg = puzzleArray[1].storagePuzzle?.arrayStoragePuzzle;
+const collected = puzzleArray[1].storagePuzzle?.collectedElements;
 
-  const smoothScroll = (elementId: string) => {
-    const el = document.getElementById(elementId);
-    if (el) {
-      const top = el.getBoundingClientRect().top;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+/*const replacementPieces = () => {
+  arrayImg?.forEach((puzzle) => {
+    console.log(puzzle);
+    const currentIndex = arrayImg.indexOf(puzzle);
+    console.log('currentIndex>>>>>', currentIndex);
+    arrayImg.splice(currentIndex, 0);
+  });
+};
+replacementPieces();*/
+
+// console.log('puzzleArray>>>', puzzleArray[1].storagePuzzle);
+
+const Industries: NextPage = () => {
+  /*  const [currentPuzzle, setCurrentPuzzle] = useState(puzzleArray);
+  console.log('сейчас в useSate', currentPuzzle);
+  const dragOverHandler = (e: any) => {
+    e.preventDefault();
+    // console.log('dragOverHandler');
+  };
+  const dragLeaveHandler = (e: any) => {};
+  const dragStartHandler = (e: any, puzzle: any) => {
+    // то элемент который взял, записываем в useState
+    setCurrentPuzzle(puzzle);
+    // удаляем этот элемент из массива
+    // const currentIndex = arrayImg?.indexOf(puzzle);
+    // setInterval(() => arrayImg?.splice(puzzle, 1), 100);
+    console.log('Элемент который взял', puzzle);
+    arrayImg?.splice(puzzle, 1);
+  };
+  const dragStartHandlerDesktop = (e: any, puzzleDesktop: any) => {
+    // const smotry = collected?.splice(puzzleDesktop, 1);
+    console.log('забрал с десктопа');
   };
 
+  const dragEndHandler = (e: any) => {
+    e.target.style.boxShadow = 'none';
+  };
+  const dropHandler = (e: any, puzzle: any) => {
+    // на какой элемент кидаешь пазл
+    // console.log('e', e.dataTransfer);
+    // console.log('111111');
+    e.preventDefault();
+    console.log('на какой элемент кидаешь пазл', puzzle);
+  };
+
+  const dragPuzzleOverHandler = (e: any, puzzleDesktop: any) => {
+    // добавляем новый кусочек пазла
+    console.log('добавляем новый кусочек пазла');
+    console.log('puzzleDesktop', puzzleDesktop);
+    const dobavil = collected?.push(puzzleDesktop);
+    console.log('dobavil>>>', dobavil);
+  };
+
+  const dropPuzzleHandler = (e: any, puzzleDesktop: any) => {
+    console.log('puzzleDesktop', puzzleDesktop);
+    const puzzleDesktopIndex = collected?.indexOf(puzzleDesktop);
+    // puzzleDesktop.push(currentPuzzle);
+    console.log('puzzleDesktopIndex', puzzleDesktopIndex);
+  };*/
+
+  /*  return (
+    <section
+      className={styles.array}
+      onDragOver={(e) => dragOverHandler(e)}
+      // onDrop={(e) => dropHandler(e)}
+      // onDragLeave={(e) => dragLeaveHandler(e)}
+      // onDragStart={(e) => dragStartHandler(e)}
+      // onDragEnd={(e) => dragEndHandler(e)}
+      draggable={true}>
+      {/!*<div className={styles.storagePuzzle}>
+        {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
+          <div
+            className={styles.imgPuzzle}
+            key={puzzleIndex}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDragLeave={(e) => dragLeaveHandler(e)}
+            onDragStart={(e) => dragStartHandler(e, puzzle)}
+            onDragEnd={(e) => dragEndHandler(e)}
+            onDrop={(e) => dropHandler(e, puzzle)}
+            draggable={true}>
+            <Image width={200} height={200} src={puzzle.imgPuzzlePiece} alt='' />
+          </div>
+        ))}
+      </div>
+      <div className={styles.desktop}>
+        {puzzleArray[1].storagePuzzle?.collectedElements.map((puzzle, puzzleIndex) => (
+          <div key={puzzleIndex}>
+            {puzzle.imgPuzzlePiece === '' ? (
+              <div className={styles.imgPuzzle} />
+            ) : (
+              <div
+                className={styles.imgPuzzle}
+                key={puzzleIndex}
+                onDragOver={(e) => dragOverHandler(e)}
+                // onDragLeave={(e) => dragLeaveHandler(e)}
+                // onDragStart={(e) => dragStartHandler(e, puzzle)}
+                // onDragEnd={(e) => dragEndHandler(e)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzle)}
+                draggable={true}>
+                <Image width={200} height={200} src={puzzle.imgPuzzlePiece} alt='' />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>*!/}
+
+      <div className={styles.storagePuzzle}>
+        {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
+          <div
+            className={styles.imgPuzzle}
+            key={puzzleIndex}
+            onDragStart={(e) => dragStartHandler(e, puzzle)}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropHandler(e, puzzle)}
+            draggable={true}>
+            <Image width={200} height={200} src={puzzle.imgPuzzlePiece} alt='' />
+          </div>
+        ))}
+      </div>
+      <div className={styles.desktop}>
+        {puzzleArray[1].storagePuzzle?.collectedElements.map((puzzleDesktop, puzzleIndex) => (
+          <div key={puzzleIndex}>
+            {puzzleDesktop.imgPuzzlePiece === '' ? (
+              <div
+                className={styles.imgPuzzle}
+                draggable={true}
+                // onDragOver={(e) => dragPuzzleOverHandler(e, puzzle)}
+                // onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragStartHandlerDesktop(e, puzzleDesktop)}
+                // onDragEnd={(e) => dragEndHandler(e)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzleDesktop)}
+              />
+            ) : (
+              <div
+                className={styles.imgPuzzle}
+                key={puzzleIndex}
+                onDragOver={(e) => dragPuzzleOverHandler(e, puzzleDesktop)}
+                onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragStartHandler(e, puzzleDesktop)}
+                onDragEnd={(e) => dragEndHandler(e)}
+                // onDrop={(e) => dropPuzzleHandler(e, puzzle)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzleDesktop)}
+                draggable={true}>
+                <Image width={200} height={200} src={puzzleDesktop.imgPuzzlePiece} alt='' />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );*/
+
+  const [state, setState] = useState<{ tasks: Task[] }>({
+    tasks: [
+      { name: 'Learn Angular', category: 'wip', bgcolor: 'yellow' },
+      { name: 'React', category: 'wip', bgcolor: 'pink' },
+      { name: 'Vue', category: 'complete', bgcolor: 'skyblue' },
+    ],
+  });
+
+  const onDragStart = (ev: DragEvent<HTMLDivElement>, id: string) => {
+    console.log('dragstart:', id);
+    ev.dataTransfer.setData('id', id);
+  };
+
+  const onDragOver = (ev: DragEvent<HTMLDivElement>) => {
+    ev.preventDefault();
+  };
+
+  const onDrop = (ev: DragEvent<HTMLDivElement>, cat: 'wip' | 'complete') => {
+    const id = ev.dataTransfer.getData('id');
+
+    const tasks = state.tasks.filter((task) => {
+      if (task.name == id) {
+        task.category = cat;
+      }
+      return task;
+    });
+
+    setState({
+      ...state,
+      tasks,
+    });
+  };
+
+  type Task = { name: string; category: 'wip' | 'complete'; bgcolor: string };
+
+  type Tasks = {
+    wip: JSX.Element[];
+    complete: JSX.Element[];
+  };
+
+  const tasks: Tasks = {
+    wip: [],
+    complete: [],
+  };
+  console.log('tasks>>>>>', tasks);
+
+  state.tasks.forEach((t: Task) => {
+    tasks[t.category].push(
+      <div
+        key={t.name}
+        onDragStart={(e) => onDragStart(e, t.name)}
+        draggable
+        className={styles.draggable}
+        style={{ backgroundColor: t.bgcolor }}>
+        {t.name}
+      </div>
+    );
+  });
+
   return (
-    <div id='up' className={styles.project}>
-      <Head>
-        <title>Flexyti About Us</title>
-        <meta name='Description of flexyti About us' content='Content of flexyti About us' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-      <section className={styles.projectWrapper}>
-        <div className={styles.projectContainer}>
-          <article className={styles.figureTimo}>
-            <div className={styles.titleBox}>
-              <span className={styles.contentLabel}>Projects</span>
-              <h1 className={styles.title}>Project TIMO</h1>
-            </div>
-            <div className={styles.projectImg}>
-              <Image src={timo.src} layout='fill' objectFit='cover' alt='Project Name' />
-            </div>
-          </article>
-        </div>
-      </section>
-      <article className={styles.teamData}>
-        <div className={styles.teamContainer}>
-          {dataTimeArray.map((item, index) => (
-            <div className={styles.teamBox} key={index}>
-              <h2 className={styles.titleTeam}>{item.title}</h2>
-              <span className={styles.subTitleTeam}>{item.subTitle}</span>
-            </div>
-          ))}
-        </div>
-      </article>
-      <article className={styles.businessBox}>
-        <h2 className={styles.businessTitle}>Business Aims for Projects</h2>
-        <p className={styles.descr}>
-          Комплексный проект в сфере образования Украины. В рамках выполнения стояла задача сбора и парсинга огромного
-          массива данных школьных выпускных тестов. Необходимо было производить сбор и сложный анализ этих данных - как
-          актуальных, на момент разработки, так и исторических (начиная с 2008 г). В результате работы системы должно
-          осуществляться предоставление статистической и аналитической информации для различных категорий пользователей
-          в сфере образования. Также в рамках веб-сайта должна работать система обучения и подготовки к выпускным
-          тестам, а также возможность проверить свой собственный рейтинг на основании исторических данных и понять в
-          какой университет возможно поступление с полученными балами в результате тестирования, а также баллами
-          аттестата. Т. е. система должны быть предназначена и для профессионалов в области образования, а также для
-          учеников, абитуриентов и их родителей
-        </p>
-      </article>
-      <article className={styles.technology}>
-        <div className={styles.technologyWrapper}>
-          <div className={styles.technologyContainer}>
-            <h2 className={styles.businessTitle}>Tehnologies</h2>
-            <div className={styles.tehnBox}>
-              <p className={styles.php}>PHP</p>
-              <p className={styles.posGres}>PosGres</p>
-              <p className={styles.js}>JS</p>
-              <p className={styles.drupal}>Drupal CMS</p>
-            </div>
-          </div>
-          <div className={styles.technologyImgBox}>
-            <Image width={844} height={520} src={timo2.src} alt='Project Name' />
-          </div>
-        </div>
-      </article>
-      <article className={styles.businessBox}>
-        <h2 className={styles.businessTitle}>How it was Done</h2>
-        <p className={styles.descr}>
-          Данный проект был реализован в сотрудничестве с USAID. Мы использовали парсинг нескольих государственных БД
-          для предоставления аналитической информации и построения рейтингов учебных заведений на основании данных за
-          2008-2015 гг. Также был использован ИИ для анализа данных по результатам внешнего независимого тестирования.
-          Использование данного подхода позволило строить многокритериальные рейтинги, которые позволяют выявлять
-          учебные заведения, проводящие подготовку на том или ином уровне, отслеживать их динамику и давать комплексную
-          информацию для специалистов в области образования для принятия эффективных управленческих решений. Благодаря
-          данному проекту получать такую аналитическую информацию с использованием множества критериев и сложных
-          алгортимов стало возможным с помощью нескольких кликов, и точность этой информации оказывается очень высокой,
-          благодаря алгоритмам, разработанным ведущими специалистами в данной отрасли, а также использованию ИИ. Кроме
-          того, нами были реализованы дополнительные сервисы по обучению и тестированию, что сделало данный проект
-          интересным широкому кругу пользователей
-        </p>
-      </article>
-      <ProjectWhatWeHave />
-      <article className={styles.businessBox}>
-        <h2 className={styles.businessTitle}>Benefits\Results</h2>
-        <p className={styles.descr}>
-          Проект использовался пользователями Украины на различных уровнях и был полностью реализован технически, а
-          также запущен в эксплуатацию и передан заказчику - БФ ТИМО. Служит комплексной информационной средой в сфере
-          образования Украины. Используется пользователями для работы с аналитической информацией, позволяет получать
-          данные в несколько кликов. В разы сократилось время доступа к информации и была оптимизирована струкутра
-          государственных органов в области образовательной статистики. Обычные пользователи получили возможность
-          простым и удобным способом получать информацию и подбирать нужные учебные заведения, а также бесплатно
-          получать образовательные услуги в области подготовки к тестированию
-        </p>
-      </article>
-      <article className={styles.clientReview}>
-        <h2 className={styles.titleReview}>Client Review</h2>
-        <p className={styles.descrReview}>
-          Application Programming Interface (API) is a core and important part of the application.API allows two
-          components of the system to communicate with one another. The first step is to design each endpoint.{' '}
-        </p>
-        <p className={styles.subTitleReview}>Alex Gusev, CEO</p>
-        <div className={styles.btnBox}>
-          <button className={styles.btnBackActive} type='button' onClick={() => router.back()}>
-            Back
-          </button>
-          <button className={styles.btnBackActive} type='button' onClick={() => smoothScroll('up')}>
-            Up
-          </button>
-        </div>
-      </article>
+    <div className={styles.containerDrag}>
+      <h2 className={styles.headerSecond}>DRAG & DROP DEMO</h2>
+      <div
+        className='wip'
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => {
+          onDrop(e, 'wip');
+        }}>
+        <span className={styles.taskHeader}>WIP</span>
+        {tasks.wip}
+      </div>
+      <div className={styles.droppable} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'complete')}>
+        <span className={styles.taskHeader}>COMPLETED</span>
+        {tasks.complete}
+      </div>
     </div>
   );
 };
 
-export default Projects;
+export default Industries;
