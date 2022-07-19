@@ -146,9 +146,151 @@ const puzzleArray = [
           },
         ],
       },
+      {
+        idStoragePuzzle: 2,
+        assembled: false,
+        puzzleName: 'Place',
+        reward: false,
+        arrayStoragePuzzleWood: [
+          {
+            idPuzzlePiece: 0,
+            imgPuzzlePiece: wood_01.src,
+          },
+          {
+            idPuzzlePiece: 1,
+            imgPuzzlePiece: wood_02.src,
+          },
+          {
+            idPuzzlePiece: 2,
+            imgPuzzlePiece: wood_03.src,
+          },
+          {
+            idPuzzlePiece: 3,
+            imgPuzzlePiece: wood_04.src,
+          },
+          {
+            idPuzzlePiece: 4,
+            imgPuzzlePiece: wood_05.src,
+          },
+          {
+            idPuzzlePiece: 5,
+            imgPuzzlePiece: wood_06.src,
+          },
+          {
+            idPuzzlePiece: 6,
+            imgPuzzlePiece: wood_07.src,
+          },
+          {
+            idPuzzlePiece: 7,
+            imgPuzzlePiece: wood_08.src,
+          },
+          {
+            idPuzzlePiece: 8,
+            imgPuzzlePiece: wood_09.src,
+          },
+          {
+            idPuzzlePiece: 9,
+            imgPuzzlePiece: wood_10.src,
+          },
+          {
+            idPuzzlePiece: 10,
+            imgPuzzlePiece: wood_11.src,
+          },
+          {
+            idPuzzlePiece: 11,
+            imgPuzzlePiece: wood_12.src,
+          },
+          {
+            idPuzzlePiece: 12,
+            imgPuzzlePiece: wood_13.src,
+          },
+          {
+            idPuzzlePiece: 13,
+            imgPuzzlePiece: wood_14.src,
+          },
+          {
+            idPuzzlePiece: 14,
+            imgPuzzlePiece: wood_15.src,
+          },
+          {
+            idPuzzlePiece: 15,
+            imgPuzzlePiece: wood_16.src,
+          },
+        ],
+        collectedElements: [
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+          {
+            imgPuzzlePiece: '',
+          },
+        ],
+      },
     ],
   },
 ];
+const activePuzzleCopy = [...puzzleArray];
+
+console.log('первоначальный массив', puzzleArray[1].storagePuzzle);
+
+const numberPuzzle = 1;
+let indexArray: number;
+
+const puzzleSelection = () => {
+  if (numberPuzzle === 1) {
+    activePuzzleCopy[1].storagePuzzle?.splice(0, 1);
+    indexArray = 1;
+    // activePuzzleCopy.
+  } else {
+    console.log('не удалил');
+  }
+};
+puzzleSelection();
+
+console.log('удалённый элемент', activePuzzleCopy[1].storagePuzzle);
+
 
 // console.log('puzzleArray', puzzleArray[1]?.storagePuzzle[0].arrayStoragePuzzleWood[0].imgPuzzlePiece);
 
@@ -163,7 +305,7 @@ const Industries: NextPage = () => {
         // onDragStart={(e) => dragStartHandler(e)}
         // onDragEnd={(e) => dragEndHandler(e)}
         draggable={true}>
-        {puzzleArray[1]?.storagePuzzle?.map((storagePuzzleItem, storagePuzzleIndex) => (
+        {activePuzzleCopy[indexArray]?.storagePuzzle?.map((storagePuzzleItem, storagePuzzleIndex) => (
           <div className={styles.puzzleContainer} key={`storagePuzzleIndex_${storagePuzzleIndex}`}>
             {storagePuzzleItem.arrayStoragePuzzleWood.map((woodItem, woodIndex) => (
               <div
