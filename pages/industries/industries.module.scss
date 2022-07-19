@@ -1,27 +1,33 @@
 @use 'assets/styles/_vars' as *;
 @use 'assets/styles/_mixins' as *;
 
-.array {
+.array { // общая обёртка
   display: flex;
   justify-content: space-between;
   max-width: 700px;
   margin: 0 auto;
 }
-.storagePuzzle {
+.puzzleContainer {
+  position: relative;
+}
+.storagePuzzle { // о куда достают пазлы
   height: 700px;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 0;
   }
 }
-.imgPuzzle,
+.imgPuzzle, // див с пазлами
 .desktopPuzzle {
   width: 100px;
   height: 100px;
   border: 2px solid gainsboro;
   cursor: grab;
 }
-.desktop {
+.desktop { // обёртка куда пазлы выкладываются
+  position: absolute;
+  top: 0;
+  left: 250px;
   display: flex;
   width: 400px;
   height: 400px;
