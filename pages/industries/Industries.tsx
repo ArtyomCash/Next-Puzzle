@@ -28,27 +28,27 @@ const puzzleArray = [
       assembled: true,
       arrayStoragePuzzle: [
         {
-          // idPuzzlePiece: 0,
+          idPuzzlePiece: 0,
           imgPuzzlePiece: wood_01.src,
         },
         {
-          // idPuzzlePiece: 1,
+          idPuzzlePiece: 1,
           imgPuzzlePiece: wood_02.src,
         },
         {
-          // idPuzzlePiece: 2,
+          idPuzzlePiece: 2,
           imgPuzzlePiece: wood_03.src,
         },
         {
-          // idPuzzlePiece: 3,
+          idPuzzlePiece: 3,
           imgPuzzlePiece: wood_04.src,
         },
         {
-          // idPuzzlePiece: 4,
+          idPuzzlePiece: 4,
           imgPuzzlePiece: wood_05.src,
         },
         {
-          // idPuzzlePiece: 5,
+          idPuzzlePiece: 5,
           imgPuzzlePiece: wood_06.src,
         },
         {
@@ -56,39 +56,39 @@ const puzzleArray = [
           imgPuzzlePiece: wood_07.src,
         },
         {
-          // idPuzzlePiece: 7,
+          idPuzzlePiece: 7,
           imgPuzzlePiece: wood_08.src,
         },
         {
-          // idPuzzlePiece: 8,
+          idPuzzlePiece: 8,
           imgPuzzlePiece: wood_09.src,
         },
         {
-          // idPuzzlePiece: 9,
+          idPuzzlePiece: 9,
           imgPuzzlePiece: wood_10.src,
         },
         {
-          // idPuzzlePiece: 10,
+          idPuzzlePiece: 10,
           imgPuzzlePiece: wood_11.src,
         },
         {
-          // idPuzzlePiece: 11,
+          idPuzzlePiece: 11,
           imgPuzzlePiece: wood_12.src,
         },
         {
-          // idPuzzlePiece: 12,
+          idPuzzlePiece: 12,
           imgPuzzlePiece: wood_13.src,
         },
         {
-          // idPuzzlePiece: 13,
+          idPuzzlePiece: 13,
           imgPuzzlePiece: wood_14.src,
         },
         {
-          // idPuzzlePiece: 14,
+          idPuzzlePiece: 14,
           imgPuzzlePiece: wood_15.src,
         },
         {
-          // idPuzzlePiece: 15,
+          idPuzzlePiece: 15,
           imgPuzzlePiece: wood_16.src,
         },
       ],
@@ -162,13 +162,13 @@ replacementPieces();*/
 // console.log('puzzleArray>>>', puzzleArray[1].storagePuzzle);
 
 const Industries: NextPage = () => {
-  const [currentPuzzle, setCurrentPuzzle] = useState(puzzleArray);
+  /*  const [currentPuzzle, setCurrentPuzzle] = useState(puzzleArray);
   console.log('сейчас в useSate', currentPuzzle);
   const dragOverHandler = (e: any) => {
     e.preventDefault();
     // console.log('dragOverHandler');
   };
-  const dragLeaveHandler = () => {};
+  const dragLeaveHandler = (e: any) => {};
   const dragStartHandler = (e: any, puzzle: any) => {
     // то элемент который взял, записываем в useState
     setCurrentPuzzle(puzzle);
@@ -178,6 +178,11 @@ const Industries: NextPage = () => {
     console.log('Элемент который взял', puzzle);
     arrayImg?.splice(puzzle, 1);
   };
+  const dragStartHandlerDesktop = (e: any, puzzleDesktop: any) => {
+    // const smotry = collected?.splice(puzzleDesktop, 1);
+    console.log('забрал с десктопа');
+  };
+
   const dragEndHandler = (e: any) => {
     e.target.style.boxShadow = 'none';
   };
@@ -187,52 +192,24 @@ const Industries: NextPage = () => {
     // console.log('111111');
     e.preventDefault();
     console.log('на какой элемент кидаешь пазл', puzzle);
-    // получаем индекс в массиве у текущей карточки
-    // const currentIndex = arrayImg?.indexOf(puzzle);
-    // console.log('currentIndex', currentIndex);
-    // console.log('currentPuzzle', currentPuzzle);
-    // удаляем элемент с текущей доски
-    // arrayImg?.splice(currentIndex, 1, currentPuzzle);
-
-    // const indexCurrentPuzzle = arrayImg?.indexOf(currentPuzzle);
-
-    // arrayImg?.splice(indexCurrentPuzzle + 1, 0, currentIndex);
-    // найти 2 индекса и поменять местами !!!!!!!!!!!!!!!!
-
-    /* const a = ['a', 'b', 'c', 'e', 'd'];
-
-    [a[3], a[4]] = [a[4], a[3]]; //[ 'a', 'b', 'c', 'd', 'e' ]*/
-
-    // console.log('puzzleArray остаток', puzzleArray[1].storagePuzzle?.arrayStoragePuzzle);
-    // console.log('что в useState', currentPuzzle);
-    // setCurrentPuzzle()
-    /*if (currentIndex !== -1) {
-      arrayImg?.splice(currentIndex, 1);
-    }*/
-    /*    setCurrentPuzzle(
-      arrayImg.map((id) => {
-        if (id.imgPuzzlePiece === currentPuzzle[0].storagePuzzle.idStoragePuzzle) {
-        }
-      })
-    );*/
   };
 
-  const dragPuzzleOverHandler = (e: any) => {
+  const dragPuzzleOverHandler = (e: any, puzzleDesktop: any) => {
     // добавляем новый кусочек пазла
     console.log('добавляем новый кусочек пазла');
-    // currentPuzzle.push(collected);
-    // const currentIndex = currentPuzzle.indexOf(collected);
-    // currentPuzzle.splice(currentIndex, 1);
+    console.log('puzzleDesktop', puzzleDesktop);
+    const dobavil = collected?.push(puzzleDesktop);
+    console.log('dobavil>>>', dobavil);
   };
 
   const dropPuzzleHandler = (e: any, puzzleDesktop: any) => {
-    console.log('22222222');
-    puzzleDesktop.push(currentPuzzle);
-  };
+    console.log('puzzleDesktop', puzzleDesktop);
+    const puzzleDesktopIndex = collected?.indexOf(puzzleDesktop);
+    // puzzleDesktop.push(currentPuzzle);
+    console.log('puzzleDesktopIndex', puzzleDesktopIndex);
+  };*/
 
-  // console.log('collected>>>>', collected);
-
-  return (
+  /*  return (
     <section
       className={styles.array}
       onDragOver={(e) => dragOverHandler(e)}
@@ -240,9 +217,8 @@ const Industries: NextPage = () => {
       // onDragLeave={(e) => dragLeaveHandler(e)}
       // onDragStart={(e) => dragStartHandler(e)}
       // onDragEnd={(e) => dragEndHandler(e)}
-      draggable={true}
-    >
-      {/*<div className={styles.storagePuzzle}>
+      draggable={true}>
+      {/!*<div className={styles.storagePuzzle}>
         {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
           <div
             className={styles.imgPuzzle}
@@ -277,7 +253,7 @@ const Industries: NextPage = () => {
             )}
           </div>
         ))}
-      </div>*/}
+      </div>*!/}
 
       <div className={styles.storagePuzzle}>
         {puzzleArray[1].storagePuzzle?.arrayStoragePuzzle.map((puzzle, puzzleIndex) => (
@@ -301,7 +277,7 @@ const Industries: NextPage = () => {
                 draggable={true}
                 // onDragOver={(e) => dragPuzzleOverHandler(e, puzzle)}
                 // onDragLeave={(e) => dragLeaveHandler(e)}
-                // onDragStart={(e) => dragStartHandler(e, puzzle)}
+                onDragStart={(e) => dragStartHandlerDesktop(e, puzzleDesktop)}
                 // onDragEnd={(e) => dragEndHandler(e)}
                 onDrop={(e) => dropPuzzleHandler(e, puzzleDesktop)}
               />
@@ -314,6 +290,7 @@ const Industries: NextPage = () => {
                 onDragStart={(e) => dragStartHandler(e, puzzleDesktop)}
                 onDragEnd={(e) => dragEndHandler(e)}
                 // onDrop={(e) => dropPuzzleHandler(e, puzzle)}
+                onDrop={(e) => dropPuzzleHandler(e, puzzleDesktop)}
                 draggable={true}>
                 <Image width={200} height={200} src={puzzleDesktop.imgPuzzlePiece} alt='' />
               </div>
@@ -322,6 +299,152 @@ const Industries: NextPage = () => {
         ))}
       </div>
     </section>
+  );*/
+
+/*  const tasksArray = [
+    { name: 'Learn Angular', category: 'wip', bgcolor: 'yellow' },
+    { name: 'React', category: 'wip', bgcolor: 'pink' },
+    { name: 'Vue', category: 'complete', bgcolor: 'skyblue' },
+  ];
+
+  const [card, setCard] = useState(tasksArray);
+
+  const onDragStart = (ev: any, id: any) => {
+    console.log('dragstart:', id);
+    ev.dataTransfer.setData('id', id);
+  };
+
+  const onDragOver = (ev: any) => {
+    ev.preventDefault();
+  };
+
+  const onDrop = (ev: any, cat: any) => {
+    const id = ev.dataTransfer.getData('id');
+
+    const tasks = card.filter((task) => {
+      if (task.name == id) {
+        task.category = cat;
+      }
+      return task;
+    });
+
+    setCard(tasks);
+  };
+
+  const tasks: any = {
+    wip: [],
+    complete: [],
+  };
+
+  tasksArray.forEach((t) => {
+    tasks[t.category].push(
+      <div
+        key={t.name}
+        onDragStart={(e) => onDragStart(e, t.name)}
+        draggable
+        className={styles.draggable}
+        style={{ backgroundColor: t.bgcolor }}>
+        {t.name}
+      </div>
+    );
+  });
+
+  return (
+    <div className={styles.containerDrag}>
+      <h2 className={styles.headerSecond}>DRAG & DROP DEMO</h2>
+      <div
+        className={styles.wip}
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => {
+          onDrop(e, 'wip');
+        }}>
+        <span className={styles.taskHeader}>WIP</span>
+        {tasks.wip}
+      </div>
+      <div className={styles.droppable} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'complete')}>
+        <span className={styles.taskHeader}>COMPLETED</span>
+        {tasks.complete}
+      </div>
+    </div>
+  );*/
+
+
+  const [state, setState] = useState<{ tasks: Task[] }>({
+    tasks: [
+      { name: 'Learn Angular', category: 'wip', bgcolor: 'yellow' },
+      { name: 'React', category: 'wip', bgcolor: 'pink' },
+      { name: 'Vue', category: 'complete', bgcolor: 'skyblue' },
+    ],
+  });
+
+  const onDragStart = (ev: DragEvent<HTMLDivElement>, id: string) => {
+    console.log('dragstart:', id);
+    ev.dataTransfer.setData('id', id);
+  };
+
+  const onDragOver = (ev: DragEvent<HTMLDivElement>) => {
+    ev.preventDefault();
+  };
+
+  const onDrop = (ev: DragEvent<HTMLDivElement>, cat: 'wip' | 'complete') => {
+    const id = ev.dataTransfer.getData('id');
+
+    const tasks = state.tasks.filter((task) => {
+      if (task.name == id) {
+        task.category = cat;
+      }
+      return task;
+    });
+
+    setState({
+      ...state,
+      tasks,
+    });
+  };
+
+  type Task = { name: string; category: 'wip' | 'complete'; bgcolor: string };
+
+  type Tasks = {
+    wip: JSX.Element[];
+    complete: JSX.Element[];
+  };
+
+  const tasks: Tasks = {
+    wip: [],
+    complete: [],
+  };
+  console.log('tasks>>>>>', tasks);
+
+  state.tasks.forEach((t: Task) => {
+    tasks[t.category].push(
+      <div
+        key={t.name}
+        onDragStart={(e) => onDragStart(e, t.name)}
+        draggable
+        className={styles.draggable}
+        style={{ backgroundColor: t.bgcolor }}>
+        {t.name}
+      </div>
+    );
+  });
+
+  return (
+    <div className={styles.containerDrag}>
+      <h2 className={styles.headerSecond}>DRAG & DROP DEMO</h2>
+      <div
+        className='wip'
+        onDragOver={(e) => onDragOver(e)}
+        onDrop={(e) => {
+          onDrop(e, 'wip');
+        }}>
+        <span className={styles.taskHeader}>WIP</span>
+        {tasks.wip}
+      </div>
+      <div className={styles.droppable} onDragOver={(e) => onDragOver(e)} onDrop={(e) => onDrop(e, 'complete')}>
+        <span className={styles.taskHeader}>COMPLETED</span>
+        {tasks.complete}
+      </div>
+    </div>
   );
 };
 
