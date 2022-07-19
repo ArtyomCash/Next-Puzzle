@@ -6,17 +6,22 @@
   justify-content: space-between;
   max-width: 700px;
   margin: 0 auto;
-}
-.puzzleContainer {
   position: relative;
 }
-.storagePuzzle { // о куда достают пазлы
+.puzzleContainer {
   height: 700px;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 0;
   }
 }
+/*.storagePuzzle { // о куда достают пазлы
+  height: 700px;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}*/
 .imgPuzzle, // див с пазлами
 .desktopPuzzle {
   width: 100px;

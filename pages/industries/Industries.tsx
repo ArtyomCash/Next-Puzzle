@@ -273,10 +273,11 @@ const puzzleArray = [
 ];
 const activePuzzleCopy = [...puzzleArray];
 
-console.log('первоначальный массив', puzzleArray[1].storagePuzzle);
-
 const numberPuzzle = 1;
 let indexArray: number;
+
+const indexActivePuzzleCopy = activePuzzleCopy[numberPuzzle]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
+console.log(indexActivePuzzleCopy);
 
 const puzzleSelection = () => {
   if (numberPuzzle === 1) {
@@ -289,12 +290,39 @@ const puzzleSelection = () => {
 };
 puzzleSelection();
 
-console.log('удалённый элемент', activePuzzleCopy[1].storagePuzzle);
-
-
-// console.log('puzzleArray', puzzleArray[1]?.storagePuzzle[0].arrayStoragePuzzleWood[0].imgPuzzlePiece);
-
 const Industries: NextPage = () => {
+  const [puzzleTake, setPuzzleTake] = useState(null);
+
+  const dragOverHandler = (e: any) => {
+    e.preventDefault();
+    if (e.target.className !== 'imgPuzzle__AEcXr') {
+      // e.target.style.boxShadow = '0 4px 3px gray';
+      e.target.style.background = 'gray';
+    }
+  };
+
+  const dragLeaveHandler = (e: any) => {
+    e.target.style.background = 'none';
+  };
+
+  const dragStartHandler = (e: any, woodItem: any) => {
+    setPuzzleTake(woodItem);
+    // console.log('взял пазл', woodItem);
+  };
+
+  const dragEndHandler = (e: any) => {
+    e.target.style.background = 'none';
+  };
+
+  const dropHandler = (e: any, woodItem: any) => {
+    e.preventDefault();
+    // получаем индекс в массиве у текущей карточки
+    const currentIndex = indexActivePuzzleCopy.indexOf(woodItem);
+    console.log('индекс в массиве у текущей карточки', currentIndex);
+  };
+
+  // console.log('наличие пазлов', activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood);
+
   return (
     <div>
       <section
@@ -304,16 +332,19 @@ const Industries: NextPage = () => {
         // onDragLeave={(e) => dragLeaveHandler(e)}
         // onDragStart={(e) => dragStartHandler(e)}
         // onDragEnd={(e) => dragEndHandler(e)}
-        draggable={true}>
+        // draggable={true}
+      >
         {activePuzzleCopy[indexArray]?.storagePuzzle?.map((storagePuzzleItem, storagePuzzleIndex) => (
           <div className={styles.puzzleContainer} key={`storagePuzzleIndex_${storagePuzzleIndex}`}>
             {storagePuzzleItem.arrayStoragePuzzleWood.map((woodItem, woodIndex) => (
               <div
                 className={styles.imgPuzzle}
                 key={`woodIndex_${woodIndex}`}
-                // onDragStart={(e) => dragStartHandler(e, puzzle)}
-                // onDragOver={(e) => dragOverHandler(e)}
-                // onDrop={(e) => dropHandler(e, puzzle)}
+                onDragOver={(e) => dragOverHandler(e)}
+                onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragStartHandler(e, woodIndex)}
+                onDragEnd={(e) => dragEndHandler(e)}
+                onDrop={(e) => dropHandler(e, woodItem)}
                 draggable={true}>
                 <Image width={200} height={200} src={woodItem.imgPuzzlePiece} alt='' />
               </div>
@@ -323,9 +354,11 @@ const Industries: NextPage = () => {
                 <div
                   className={styles.imgPuzzle}
                   key={`collectedIndex_${collectedIndex}`}
-                  // onDragStart={(e) => dragStartHandler(e, puzzle)}
-                  // onDragOver={(e) => dragOverHandler(e)}
-                  // onDrop={(e) => dropHandler(e, puzzle)}
+                  onDragOver={(e) => dragOverHandler(e)}
+                  onDragLeave={(e) => dragLeaveHandler(e)}
+                  // onDragStart={(e) => dragStartHandler(e, board, item)}
+                  // onDragEnd={(e) => dragEndHandler(e)}
+                  // onDrop={(e) => dropHandler(e, board, item)}
                   draggable={true}
                 />
               ))}
