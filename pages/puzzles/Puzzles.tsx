@@ -204,12 +204,15 @@ const Puzzles: NextPage = () => {
     e.preventDefault();
     // получаем индекс в массиве у текущей карточки
     const currentIndex = currentBoard.items.indexOf(currentItem);
+    console.log('currentIndex', currentIndex);
+    console.log('currentItem1111111', currentItem);
     // удаляем элемент с текущей доски
     currentBoard.items.splice(currentIndex, 1);
     // удаляем индекс элемента над которым держим карточку
     const dropIndex = board.items.indexOf(item);
     board.items.splice(dropIndex + 1, 0, currentItem); //currentItem - вставляем карточку после удалённых элементов
     // setBoards - вызываем функцию для того чтобы изменить состояние
+    console.log('что записали', board.items);
     setBoards(
       boards.map((b) => {
         if (b.id === board.id) {

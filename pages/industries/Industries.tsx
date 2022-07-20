@@ -97,51 +97,67 @@ const puzzleArray = [
         ],
         collectedElements: [
           {
+            idPuzzlePiece: 0,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 1,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 2,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 3,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 4,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 5,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 6,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 7,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 8,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 9,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 10,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 11,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 12,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 13,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 14,
             imgPuzzlePiece: '',
           },
           {
+            idPuzzlePiece: 15,
             imgPuzzlePiece: '',
           },
         ],
@@ -274,16 +290,19 @@ const puzzleArray = [
 const activePuzzleCopy = [...puzzleArray];
 
 const itemActivePuzzleCopy = activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
-console.log('itemActivePuzzleCopy11111', itemActivePuzzleCopy);
+
+const indexActivePuzzleCopy = activePuzzleCopy[1]?.storagePuzzle[0]?.collectedElements;
+
+console.log('новый массив с картинками', indexActivePuzzleCopy);
 
 const arrayCurrentSet = activePuzzleCopy[1]?.storagePuzzle;
 
 const Industries: NextPage = () => {
   const [currentSet, setCurrentSet] = useState(arrayCurrentSet);
-  console.log('что в useState в общем массиве', currentSet[0]?.arrayStoragePuzzleWood);
+  console.log('массив второйЮЮЮЮЮ', currentSet);
 
-  const [puzzleTake, setPuzzleTake] = useState(null);
-  console.log('что в useState', puzzleTake);
+  const [puzzleTake, setPuzzleTake] = useState();
+  console.log('пазл в UseState', puzzleTake);
 
   const dragOverHandler = (e: any) => {
     e.preventDefault();
@@ -300,21 +319,29 @@ const Industries: NextPage = () => {
   const dragStartHandler = (e: any, woodItem: any) => {
     setPuzzleTake(woodItem);
     const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(woodItem);
-    console.log('индекс в массиве у текущей карточки', currentIndex);
     // удаляем пазл из массива
-    currentSet[0]?.arrayStoragePuzzleWood.splice(currentIndex, 1);
+    const puzzleInLeftBoard = currentSet[0]?.arrayStoragePuzzleWood.splice(currentIndex, 1);
+    console.log('puzzleInLeftBoard', puzzleInLeftBoard);
   };
 
   const dragEndHandler = (e: any) => {
     e.target.style.background = 'none';
   };
 
-  const dropHandler = (e: any, woodItem: any) => {
-    e.preventDefault();
+  const dropHandlerDesktop = (e: any, woodItem: any) => {
     // получаем индекс в массиве у текущей карточки
-
+    // const pushPuzzle = indexActivePuzzleCopy.push(puzzleTake);
+    // console.log('pushPuzzle', pushPuzzle);
+    e.preventDefault();
+    const emptySquareIndex = indexActivePuzzleCopy.indexOf(puzzleTake);
+    const removedEmptySquare = currentSet[0]?.collectedElements.splice(emptySquareIndex + 1, 1, puzzleTake);
+    console.log('меняем пустой квадрат на картинку', removedEmptySquare);
+    console.log('puzzleTake>>>>>>>>>+++++', puzzleTake);
+    // setCurrentSet(indexActivePuzzleCopy)
+    // currentSet[0]?.collectedElements.push(puzzleTake);
     // const остатокМассива = currentSet?.splice(woodItem, 1);
-    // console.log('массив  без элемента', остатокМассива);
+    // const deletePuzzleBefore = currentSet[0]?.collectedElements.push(puzzleTake);
+    // console.log('всавляем удалённый пазл панее в массив', deletePuzzleBefore);
   };
 
   // console.log('наличие пазлов', activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood);
@@ -340,7 +367,7 @@ const Industries: NextPage = () => {
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, woodItem)}
                 onDragEnd={(e) => dragEndHandler(e)}
-                onDrop={(e) => dropHandler(e, woodItem)}
+                // onDrop={(e) => dropHandler(e, woodItem)}
                 draggable={true}>
                 <Image width={200} height={200} src={woodItem.imgPuzzlePiece} alt='' />
               </div>
@@ -354,7 +381,7 @@ const Industries: NextPage = () => {
                   onDragLeave={(e) => dragLeaveHandler(e)}
                   // onDragStart={(e) => dragStartHandler(e, collectedItem)}
                   // onDragEnd={(e) => dragEndHandler(e)}
-                  onDrop={(e) => dropHandler(e, collectedItem)}
+                  onDrop={(e) => dropHandlerDesktop(e, collectedItem)}
                   draggable={true}
                 />
               ))}
