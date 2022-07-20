@@ -146,7 +146,7 @@ const puzzleArray = [
           },
         ],
       },
-      {
+      /*{
         idStoragePuzzle: 2,
         assembled: false,
         puzzleName: 'Place',
@@ -267,31 +267,23 @@ const puzzleArray = [
             imgPuzzlePiece: '',
           },
         ],
-      },
+      },*/
     ],
   },
 ];
 const activePuzzleCopy = [...puzzleArray];
 
-const numberPuzzle = 1;
-let indexArray: number;
+const itemActivePuzzleCopy = activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
+console.log('itemActivePuzzleCopy11111', itemActivePuzzleCopy);
 
-const indexActivePuzzleCopy = activePuzzleCopy[numberPuzzle]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
-console.log(indexActivePuzzleCopy);
-
-const puzzleSelection = () => {
-  if (numberPuzzle === 1) {
-    activePuzzleCopy[1].storagePuzzle?.splice(0, 1);
-    indexArray = 1;
-    // activePuzzleCopy.
-  } else {
-    console.log('не удалил');
-  }
-};
-puzzleSelection();
+const arrayCurrentSet = activePuzzleCopy[1]?.storagePuzzle;
 
 const Industries: NextPage = () => {
+  const [currentSet, setCurrentSet] = useState(arrayCurrentSet);
+  console.log('что в useState в общем массиве', currentSet[0]?.arrayStoragePuzzleWood);
+
   const [puzzleTake, setPuzzleTake] = useState(null);
+  console.log('что в useState', puzzleTake);
 
   const dragOverHandler = (e: any) => {
     e.preventDefault();
@@ -307,7 +299,10 @@ const Industries: NextPage = () => {
 
   const dragStartHandler = (e: any, woodItem: any) => {
     setPuzzleTake(woodItem);
-    // console.log('взял пазл', woodItem);
+    const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(woodItem);
+    console.log('индекс в массиве у текущей карточки', currentIndex);
+    // удаляем пазл из массива
+    currentSet[0]?.arrayStoragePuzzleWood.splice(currentIndex, 1);
   };
 
   const dragEndHandler = (e: any) => {
@@ -317,8 +312,9 @@ const Industries: NextPage = () => {
   const dropHandler = (e: any, woodItem: any) => {
     e.preventDefault();
     // получаем индекс в массиве у текущей карточки
-    const currentIndex = indexActivePuzzleCopy.indexOf(woodItem);
-    console.log('индекс в массиве у текущей карточки', currentIndex);
+
+    // const остатокМассива = currentSet?.splice(woodItem, 1);
+    // console.log('массив  без элемента', остатокМассива);
   };
 
   // console.log('наличие пазлов', activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood);
@@ -334,7 +330,7 @@ const Industries: NextPage = () => {
         // onDragEnd={(e) => dragEndHandler(e)}
         // draggable={true}
       >
-        {activePuzzleCopy[indexArray]?.storagePuzzle?.map((storagePuzzleItem, storagePuzzleIndex) => (
+        {currentSet?.map((storagePuzzleItem, storagePuzzleIndex) => (
           <div className={styles.puzzleContainer} key={`storagePuzzleIndex_${storagePuzzleIndex}`}>
             {storagePuzzleItem.arrayStoragePuzzleWood.map((woodItem, woodIndex) => (
               <div
@@ -342,7 +338,7 @@ const Industries: NextPage = () => {
                 key={`woodIndex_${woodIndex}`}
                 onDragOver={(e) => dragOverHandler(e)}
                 onDragLeave={(e) => dragLeaveHandler(e)}
-                onDragStart={(e) => dragStartHandler(e, woodIndex)}
+                onDragStart={(e) => dragStartHandler(e, woodItem)}
                 onDragEnd={(e) => dragEndHandler(e)}
                 onDrop={(e) => dropHandler(e, woodItem)}
                 draggable={true}>
@@ -356,9 +352,9 @@ const Industries: NextPage = () => {
                   key={`collectedIndex_${collectedIndex}`}
                   onDragOver={(e) => dragOverHandler(e)}
                   onDragLeave={(e) => dragLeaveHandler(e)}
-                  // onDragStart={(e) => dragStartHandler(e, board, item)}
+                  // onDragStart={(e) => dragStartHandler(e, collectedItem)}
                   // onDragEnd={(e) => dragEndHandler(e)}
-                  // onDrop={(e) => dropHandler(e, board, item)}
+                  onDrop={(e) => dropHandler(e, collectedItem)}
                   draggable={true}
                 />
               ))}
