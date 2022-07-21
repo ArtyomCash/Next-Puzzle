@@ -13,6 +13,7 @@ const mockMenu: menuItemType[] = [
   { name: 'Our services', id: 'services', href: '/services', className: 'menuItem' },
   { name: 'Industries', id: 'industries', href: '/industries', className: 'menuItem' },
   { name: 'Technologies', id: 'technologies', href: '/projects', className: 'menuItem' },
+  { name: 'Puzzle-tow-array', id: 'no_id', href: '/puzzle-two-array', className: 'menuItem' },
   { name: 'Contacts', id: 'no_id', href: '/contacts', className: 'menuItem' },
 ];
 
