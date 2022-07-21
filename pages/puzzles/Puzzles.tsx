@@ -19,7 +19,7 @@ import wood_13 from '../../assets/Puzzle/wood/wood_13.jpg';
 import wood_14 from '../../assets/Puzzle/wood/wood_14.jpg';
 import wood_15 from '../../assets/Puzzle/wood/wood_15.jpg';
 import wood_16 from '../../assets/Puzzle/wood/wood_16.jpg';
-import { log } from 'util';
+// import { log } from 'util';
 
 const Puzzles: NextPage = () => {
   /*  type itemsArray = {
