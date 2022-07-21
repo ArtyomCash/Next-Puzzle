@@ -175,23 +175,63 @@ const Puzzles: NextPage = () => {
   // массив досок
   const [boards, setBoards] = useState(arrayImg);
 
+  // const [indexOfElement, setIndexOfElement] = useState(idPuzzle);
+
+  const idPuzzle: any = [];
+  const keyPuzzle: any = [];
+
+  console.log('keyPuzzle>>>>', keyPuzzle);
+  console.log('idPuzzle', idPuzzle);
+
   const findOverwriteIntoNewArray = (boards: any) => {
-    // const newArrayForDesktop: any = [];
-    const idPuzzle: any = [];
-    const keyPuzzle: any = [];
     boards.forEach((puzzleInArray: any) => {
       puzzleInArray.finishedPuzzle.filter((id: any) => {
-        idPuzzle.push(id.id);
+        idPuzzle.push(id.id - 1);
       });
-      console.log('idPuzzle', idPuzzle);
-      Object.keys(idPuzzle).find((key) => {
-        // keyPuzzle.push(key);
-        console.log(key);
-      });
-      console.log('keyPuzzle>>>', keyPuzzle);
     });
+    Object.keys(idPuzzle).find((key, index) => {
+      keyPuzzle.push(index);
+    });
+    // const element = 15;
+    // const idx = indexPuzzle.indexOf(idPuzzle);
+    // console.log('idx', idx);
+    // console.log('indexPuzzle', indexPuzzle);
+    /*let puzzleIndexOf = idPuzzle.indexOf(indexOfElement);
+    console.log('puzzleIndexOf', puzzleIndexOf);
+    while (puzzleIndexOf != -1) {
+      indexPuzzle.push(puzzleIndexOf);
+      puzzleIndexOf = idPuzzle.indexOf(idPuzzle, puzzleIndexOf + 1);
+    }
+    console.log('puzzleIndexOf', puzzleIndexOf);*/
+    /* idPuzzle.filter((puzzle: any) => {
+      const puzzleIndexOf = puzzle.indexOf(indexOfElement);
+      console.log('puzzleIndexOf', puzzleIndexOf);
+    });*/
+    /* while (idx != -1) {
+      indexPuzzle.push(idx);
+      idx = idPuzzle.indexOf(idPuzzle, idx + 1);
+    }
+    console.log('keyPuzzle', indexPuzzle);*/
+    /* const indices = [];
+    const array = ['a', 'b', 'a', 'c', 'a', 'd'];
+    const element = 'a';
+    let idx = array.indexOf(element);
+    while (idx != -1) {
+      indices.push(idx);
+      idx = array.indexOf(element, idx + 1);
+    }*/
+    // console.log('indices', indices);
+    // [0, 2, 4]
   };
   findOverwriteIntoNewArray(boards);
+
+  const puzzleInPlaceOrNot = (idPuzzle: any, keyPuzzle: any) => {
+    /*const onePuzzle = [];
+    idPuzzle.forEach((idP: any) => {
+      idP
+    })*/
+  };
+  puzzleInPlaceOrNot(idPuzzle, keyPuzzle);
 
   // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState<any>(null);
