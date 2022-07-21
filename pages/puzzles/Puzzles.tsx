@@ -19,6 +19,7 @@ import wood_13 from '../../assets/Puzzle/wood/wood_13.jpg';
 import wood_14 from '../../assets/Puzzle/wood/wood_14.jpg';
 import wood_15 from '../../assets/Puzzle/wood/wood_15.jpg';
 import wood_16 from '../../assets/Puzzle/wood/wood_16.jpg';
+import { log } from 'util';
 
 const Puzzles: NextPage = () => {
   /*  type itemsArray = {
@@ -179,6 +180,7 @@ const Puzzles: NextPage = () => {
 
   const idPuzzle: any = [];
   const keyPuzzle: any = [];
+  let victory;
 
   console.log('keyPuzzle>>>>', keyPuzzle);
   console.log('idPuzzle', idPuzzle);
@@ -226,10 +228,11 @@ const Puzzles: NextPage = () => {
   findOverwriteIntoNewArray(boards);
 
   const puzzleInPlaceOrNot = (idPuzzle: any, keyPuzzle: any) => {
-    /*const onePuzzle = [];
-    idPuzzle.forEach((idP: any) => {
-      idP
-    })*/
+    const isEqual = idPuzzle.toString() === keyPuzzle.toString();
+    console.log('isEqual', isEqual);
+    if (isEqual) {
+      victory = true;
+    }
   };
   puzzleInPlaceOrNot(idPuzzle, keyPuzzle);
 
@@ -311,6 +314,8 @@ const Puzzles: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <section className={styles.wrapper}>
+        {victory ? <div>Вы молодец!</div> : <div>собрать пазл</div>}
+
         <div className={styles.app}>
           {boards.map((board, boardsIndex) => (
             <>
