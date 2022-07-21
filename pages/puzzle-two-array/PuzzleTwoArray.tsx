@@ -17,9 +17,9 @@ import wood_13 from '../../assets/Puzzle/wood/wood_13.jpg';
 import wood_14 from '../../assets/Puzzle/wood/wood_14.jpg';
 import wood_15 from '../../assets/Puzzle/wood/wood_15.jpg';
 import wood_16 from '../../assets/Puzzle/wood/wood_16.jpg';
+import Image from 'next/image';
 
 const PuzzleTwoArray: NextPage = () => {
-
   const [state, setState] = useState<{ tasks: Task[] }>({
     tasks: [
       /*{ name: 'Learn Angular', category: 'wip', bgcolor: 'yellow' },
@@ -34,13 +34,13 @@ const PuzzleTwoArray: NextPage = () => {
       { id: '7', img: wood_07.src, category: 'wip', bgcolor: 'yellow' },
       { id: '8', img: wood_08.src, category: 'wip', bgcolor: 'yellow' },
       { id: '9', img: wood_09.src, category: 'wip', bgcolor: 'yellow' },
-      { id: '10', img: wood_10.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '11', img: wood_11.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '12', img: wood_12.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '13', img: wood_13.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '14', img: wood_14.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '15', img: wood_15.src, category: 'wip', bgcolor: 'yellow'},
-      { id: '16', img: wood_16.src, category: 'wip', bgcolor: 'yellow'},
+      { id: '10', img: wood_10.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '11', img: wood_11.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '12', img: wood_12.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '13', img: wood_13.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '14', img: wood_14.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '15', img: wood_15.src, category: 'wip', bgcolor: 'yellow' },
+      { id: '16', img: wood_16.src, category: 'wip', bgcolor: 'yellow' },
     ],
   });
 
@@ -90,7 +90,10 @@ const PuzzleTwoArray: NextPage = () => {
         draggable
         className={styles.draggable}
         style={{ backgroundColor: t.bgcolor }}>
-        {t.id}
+        {/*{t.id}*/}
+        <div className={styles.imgFigure}>
+          <Image width={200} height={200} src={t.img} alt='Business analysis' />
+        </div>
       </div>
     );
   });
