@@ -20,8 +20,8 @@
   display: inline-block;
   margin: 0;
   padding: 0;
-  background-color: #E0E0E0;
-  width:100%;
+  //background-color: #E0E0E0;
+  //width:100%;
 }
 
 .taskHeader {
@@ -31,11 +31,14 @@
 }
 
 .droppable {
+  display: flex;
+  flex-wrap: wrap;
   //position: absolute;
-  width: 150px;
-  height: 100vh;
-  right: 0;
-  top: 10px;
+  width: 408px;
+  height: 408px;
+  //height: 100vh;
+  //right: 0;
+  //top: 10px;
   background-color: #9E9E9E;
   border-left: 1px dotted;
 }
@@ -44,6 +47,6 @@
   width: 100px;
   height: 100px;
   background-color: yellow;
-  margin: 5px auto;
+  margin: 1px auto;
   line-height: 5em;
 }
