@@ -174,8 +174,24 @@ const Puzzles: NextPage = () => {
   ];
   // массив досок
   const [boards, setBoards] = useState(arrayImg);
-  console.log('items>>>>', boards[0].items);
-  console.log('finishedPuzzle>>>>', boards[0].finishedPuzzle);
+
+  const findOverwriteIntoNewArray = (boards: any) => {
+    // const newArrayForDesktop: any = [];
+    const idPuzzle: any = [];
+    const keyPuzzle: any = [];
+    boards.forEach((puzzleInArray: any) => {
+      puzzleInArray.finishedPuzzle.filter((id: any) => {
+        idPuzzle.push(id.id);
+      });
+      console.log('idPuzzle', idPuzzle);
+      Object.keys(idPuzzle).find((key) => {
+        // keyPuzzle.push(key);
+        console.log(key);
+      });
+      console.log('keyPuzzle>>>', keyPuzzle);
+    });
+  };
+  findOverwriteIntoNewArray(boards);
 
   // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState<any>(null);
