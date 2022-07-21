@@ -228,11 +228,22 @@ const Puzzles: NextPage = () => {
   findOverwriteIntoNewArray(boards);
 
   const puzzleInPlaceOrNot = (idPuzzle: any, keyPuzzle: any) => {
-    const isEqual = idPuzzle.toString() === keyPuzzle.toString();
+    if (idPuzzle.length === 16 && idPuzzle.toString() === keyPuzzle.toString()) {
+      // console.log('в id 16 строк');
+      // const isEqual = idPuzzle.toString() === keyPuzzle.toString();
+      // console.log('isEqual', isEqual);
+      // if (idPuzzle.toString() === keyPuzzle.toString()) {
+      victory = true;
+      // }
+    } else {
+      console.log('меньше 16ти');
+    }
+
+    /* const isEqual = idPuzzle.toString() === keyPuzzle.toString();
     console.log('isEqual', isEqual);
     if (isEqual) {
       victory = true;
-    }
+    }*/
   };
   puzzleInPlaceOrNot(idPuzzle, keyPuzzle);
 
