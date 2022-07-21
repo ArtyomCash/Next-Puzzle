@@ -329,9 +329,10 @@ const Industries: NextPage = () => {
   };
 
   const dropHandlerDesktop = (e: any, woodItem: any) => {
+    console.log('woodItemtttttttttttttt', woodItem);
     // получаем индекс в массиве у текущей карточки
-    // const pushPuzzle = indexActivePuzzleCopy.push(puzzleTake);
-    // console.log('pushPuzzle', pushPuzzle);
+    const pushPuzzle = indexActivePuzzleCopy.push(puzzleTake);
+    console.log('pushPuzzle', pushPuzzle);
     e.preventDefault();
     const emptySquareIndex = indexActivePuzzleCopy.indexOf(puzzleTake);
     const removedEmptySquare = currentSet[0]?.collectedElements.splice(emptySquareIndex + 1, 1, puzzleTake);
@@ -342,6 +343,16 @@ const Industries: NextPage = () => {
     // const остатокМассива = currentSet?.splice(woodItem, 1);
     // const deletePuzzleBefore = currentSet[0]?.collectedElements.push(puzzleTake);
     // console.log('всавляем удалённый пазл панее в массив', deletePuzzleBefore);
+    setCurrentSet(
+      currentSet?.map((b) => {
+        if (b.idStoragePuzzle === woodItem.idPuzzlePiece) {
+          return woodItem;
+        }
+        if (b.idStoragePuzzle !== woodItem.idPuzzlePiece) {
+          return puzzleTake;
+        }
+      })
+    );
   };
 
   // console.log('наличие пазлов', activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood);
