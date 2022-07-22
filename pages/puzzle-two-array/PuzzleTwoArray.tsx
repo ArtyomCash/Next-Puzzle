@@ -19,6 +19,13 @@ import wood_15 from '../../assets/Puzzle/wood/wood_15.jpg';
 import wood_16 from '../../assets/Puzzle/wood/wood_16.jpg';
 import Image from 'next/image';
 
+type Task = { id: string; img: string; category: 'wip' | 'complete'; bgcolor: string };
+
+type Tasks = {
+  wip: JSX.Element[];
+  complete: JSX.Element[];
+};
+
 const PuzzleTwoArray: NextPage = () => {
   const [state, setState] = useState<{ tasks: Task[] }>({
     tasks: [
@@ -69,13 +76,6 @@ const PuzzleTwoArray: NextPage = () => {
     });
   };
 
-  type Task = { id: string; img: string; category: 'wip' | 'complete'; bgcolor: string };
-
-  type Tasks = {
-    wip: JSX.Element[];
-    complete: JSX.Element[];
-  };
-
   const tasks: Tasks = {
     wip: [],
     complete: [],
@@ -92,7 +92,7 @@ const PuzzleTwoArray: NextPage = () => {
         style={{ backgroundColor: t.bgcolor }}>
         {/*{t.id}*/}
         <div className={styles.imgFigure}>
-          <Image width={200} height={200} src={t.img} alt='Business analysis' />
+          <Image width={200} height={200} src={t.img} alt='' />
         </div>
       </div>
     );

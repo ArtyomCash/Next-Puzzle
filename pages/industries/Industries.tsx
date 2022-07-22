@@ -19,6 +19,7 @@ import wood_14 from 'assets/Puzzle/wood/wood_14.jpg';
 import wood_15 from 'assets/Puzzle/wood/wood_15.jpg';
 import wood_16 from 'assets/Puzzle/wood/wood_16.jpg';
 import Image from 'next/image';
+import { log } from 'util';
 
 const puzzleArray = [
   { namePlayer: 'Семён', idPlayer: 1, password: '1' },
@@ -289,20 +290,28 @@ const puzzleArray = [
 ];
 const activePuzzleCopy = [...puzzleArray];
 
-const itemActivePuzzleCopy = activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
+const puzzleWood = activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood;
 
-const indexActivePuzzleCopy = activePuzzleCopy[1]?.storagePuzzle[0]?.collectedElements;
+const collectedElementsWood = activePuzzleCopy[1]?.storagePuzzle[0]?.collectedElements;
 
-console.log('новый массив с картинками', indexActivePuzzleCopy);
+// console.log('новый массив с картинками', indexActivePuzzleCopy);
 
 const arrayCurrentSet = activePuzzleCopy[1]?.storagePuzzle;
 
 const Industries: NextPage = () => {
+  // общий массив
   const [currentSet, setCurrentSet] = useState(arrayCurrentSet);
-  console.log('массив второйЮЮЮЮЮ', currentSet);
+  // console.log('куда записывать', currentSet[0]?.arrayStoragePuzzleWood);
 
+  // пазл который изъяли
   const [puzzleTake, setPuzzleTake] = useState();
-  console.log('пазл в UseState', puzzleTake);
+  console.log('puzzleTake11111', puzzleTake);
+  // const [puzzleWoodUpdate, setPuzzleWoodUpdate] = useState(puzzleWood);
+  const [чтоВнутри, сетЧтоВнутри] = useState();
+  console.log('чтоВнутри', чтоВнутри);
+  // const [collectedElUpdate, setCollectedElUpdate] = useState(collectedElementsWood);
+
+  console.log('пазл в UseState', puzzleTake?.idPuzzlePiece);
 
   const dragOverHandler = (e: any) => {
     e.preventDefault();
@@ -321,7 +330,76 @@ const Industries: NextPage = () => {
     const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(woodItem);
     // удаляем пазл из массива
     const puzzleInLeftBoard = currentSet[0]?.arrayStoragePuzzleWood.splice(currentIndex, 1);
-    console.log('puzzleInLeftBoard', puzzleInLeftBoard);
+    // console.log('puzzleInLeftBoard', puzzleInLeftBoard);
+  };
+
+  const dropHandler = (e: any, woodItem: any) => {
+    e.preventDefault();
+    console.log('currentSet', currentSet[0].arrayStoragePuzzleWood);
+    let puzzleControl;
+    console.log('puzzleControl', puzzleControl);
+    // currentSet[0].arrayStoragePuzzleWood.push(puzzleTake);
+    /*currentSet[0].arrayStoragePuzzleWood.forEach((remotePuzzle) => {
+      // let eee: any;
+      // console.log('eee', eee);
+      // console.log('element', remotePuzzle.idPuzzlePiece);
+      // console.log('puzzleTake.idPuzzlePiece', puzzleTake?.idPuzzlePiece);
+      // console.log('puzzleTake', puzzleTake);
+      if (puzzleTake?.idPuzzlePiece !== remotePuzzle.idPuzzlePiece) {
+
+      }
+    });
+    console.log('new', currentSet[0].arrayStoragePuzzleWood);*/
+    /*setCurrentSet(
+      currentSet[0]?.arrayStoragePuzzleWood.forEach((remotePuzzle) => {
+        if (remotePuzzle?.idPuzzlePiece === puzzleTake?.idPuzzlePiece) {
+          currentSet[0]?.arrayStoragePuzzleWood.push(puzzleTake);
+          console.log('нашёл');
+        } else {
+          return currentSet;
+          console.log('не нашёл');
+          console.log('remotePuzzle11111', remotePuzzle?.idPuzzlePiece);
+          console.log('puzzleTake?.idPuzzlePiece222222', puzzleTake?.idPuzzlePiece);
+        }
+        // console.log('55555555555remotePuzzle', remotePuzzle.idStoragePuzzle);
+      })
+    );*/
+    /*    setCurrentSet(
+      currentSet?.filter((e) => {
+        e.arrayStoragePuzzleWood.forEach((remotePuzzle) => {
+          const www = [];
+
+          if (remotePuzzle?.idPuzzlePiece !== puzzleTake?.idPuzzlePiece) {
+            console.log('remotePuzzle', remotePuzzle.idPuzzlePiece);
+            console.log('puzzleTake', puzzleTake?.idPuzzlePiece);
+          } else {
+            www.push(puzzleTake?.idPuzzlePiece);
+            return currentSet[0].arrayStoragePuzzleWood.push(puzzleTake?.idPuzzlePiece);
+          }
+          console.log('www', www);
+        });
+      })
+    );*/
+    // console.log('currentSet?.arrayStoragePuzzleWood', currentSet?.arrayStoragePuzzleWood[0]);
+
+    // получаем индекс в массиве у текущей карточки
+    // const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(woodItem);
+    // console.log('currentIndex', currentIndex);
+    // itemActivePuzzleCopy.splice(currentIndex + 1, 0, woodItem);
+    // console.log('currentSet[0].arrayStoragePuzzleWood', currentSet[0].arrayStoragePuzzleWood);
+    // console.log('puzzleTake', puzzleTake);
+    // const puzzlePush = currentSet[0].arrayStoragePuzzleWood.push(puzzleTake);
+    // console.log('puzzlePush', puzzlePush);
+    currentSet[0].arrayStoragePuzzleWood.forEach((remotePuzzle) => {
+      if (remotePuzzle.idPuzzlePiece !== puzzleTake?.idPuzzlePiece) {
+        currentSet[0].arrayStoragePuzzleWood.push(puzzleTake);
+        // const currentIndex = remotePuzzle.idPuzzlePiece.indexOf(woodItem);
+        // currentSet[0].arrayStoragePuzzleWood.splice(woodItem, 0, currentIndex);
+        // console.log('currentSet[0].arrayStoragePuzzleWood', currentSet[0].arrayStoragePuzzleWood);
+      } else {
+        console.log('не записал');
+      }
+    });
   };
 
   const dragEndHandler = (e: any) => {
@@ -329,21 +407,23 @@ const Industries: NextPage = () => {
   };
 
   const dropHandlerDesktop = (e: any, woodItem: any) => {
-    console.log('woodItemtttttttttttttt', woodItem);
+    // console.log('woodItemtttttttttttttt', woodItem);
     // получаем индекс в массиве у текущей карточки
-    const pushPuzzle = indexActivePuzzleCopy.push(puzzleTake);
-    console.log('pushPuzzle', pushPuzzle);
+    // const pushPuzzle = indexActivePuzzleCopy.push(puzzleTake);
+    // console.log('pushPuzzle', pushPuzzle);
+    // ---------------
     e.preventDefault();
-    const emptySquareIndex = indexActivePuzzleCopy.indexOf(puzzleTake);
-    const removedEmptySquare = currentSet[0]?.collectedElements.splice(emptySquareIndex + 1, 1, puzzleTake);
-    console.log('меняем пустой квадрат на картинку', removedEmptySquare);
-    console.log('puzzleTake>>>>>>>>>+++++', puzzleTake);
+    // const emptySquareIndex = indexActivePuzzleCopy.indexOf(puzzleTake);
+    // const removedEmptySquare = currentSet[0]?.collectedElements.splice(emptySquareIndex + 1, 1, puzzleTake);
+    // --------------
+    // console.log('меняем пустой квадрат на картинку', removedEmptySquare);
+    // console.log('puzzleTake>>>>>>>>>+++++', puzzleTake);
     // setCurrentSet(indexActivePuzzleCopy)
     // currentSet[0]?.collectedElements.push(puzzleTake);
     // const остатокМассива = currentSet?.splice(woodItem, 1);
     // const deletePuzzleBefore = currentSet[0]?.collectedElements.push(puzzleTake);
     // console.log('всавляем удалённый пазл панее в массив', deletePuzzleBefore);
-    setCurrentSet(
+    /*setCurrentSet(
       currentSet?.map((b) => {
         if (b.idStoragePuzzle === woodItem.idPuzzlePiece) {
           return woodItem;
@@ -352,9 +432,25 @@ const Industries: NextPage = () => {
           return puzzleTake;
         }
       })
-    );
+    );*/
   };
 
+  /*    const arrayQwe = [
+    { name: 'Vasy', number: 24 },
+    { name: 'Kolya', number: 37 },
+  ];
+
+  const rita = { name: 'Rita', number: 25 };
+  const proba = () => {
+    console.log('arrayQwe', arrayQwe);
+    console.log('rita', rita);
+    const vsego = arrayQwe.push(rita);
+    console.log('vsego', vsego);
+
+  };
+
+  proba();
+  console.log('arrayQwe111111', arrayQwe);*/
   // console.log('наличие пазлов', activePuzzleCopy[1]?.storagePuzzle[0]?.arrayStoragePuzzleWood);
 
   return (
@@ -378,7 +474,7 @@ const Industries: NextPage = () => {
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, woodItem)}
                 onDragEnd={(e) => dragEndHandler(e)}
-                // onDrop={(e) => dropHandler(e, woodItem)}
+                onDrop={(e) => dropHandler(e, woodItem)}
                 draggable={true}>
                 <Image width={200} height={200} src={woodItem.imgPuzzlePiece} alt='' />
               </div>
@@ -388,11 +484,11 @@ const Industries: NextPage = () => {
                 <div
                   className={styles.imgPuzzle}
                   key={`collectedIndex_${collectedIndex}`}
-                  onDragOver={(e) => dragOverHandler(e)}
-                  onDragLeave={(e) => dragLeaveHandler(e)}
+                  // onDragOver={(e) => dragOverHandler(e)}
+                  // onDragLeave={(e) => dragLeaveHandler(e)}
                   // onDragStart={(e) => dragStartHandler(e, collectedItem)}
                   // onDragEnd={(e) => dragEndHandler(e)}
-                  onDrop={(e) => dropHandlerDesktop(e, collectedItem)}
+                  // onDrop={(e) => dropHandlerDesktop(e, collectedItem)}
                   draggable={true}
                 />
               ))}
