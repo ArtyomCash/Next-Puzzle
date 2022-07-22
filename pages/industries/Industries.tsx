@@ -301,7 +301,7 @@ const arrayCurrentSet = activePuzzleCopy[1]?.storagePuzzle;
 const Industries: NextPage = () => {
   // общий массив
   const [currentSet, setCurrentSet] = useState(arrayCurrentSet);
-  // console.log('куда записывать', currentSet[0]?.arrayStoragePuzzleWood);
+  console.log('куда записывать', currentSet[0]?.arrayStoragePuzzleWood);
 
   // пазл который изъяли
   const [puzzleTake, setPuzzleTake] = useState();
@@ -317,7 +317,7 @@ const Industries: NextPage = () => {
     e.preventDefault();
     if (e.target.className !== 'imgPuzzle__AEcXr') {
       // e.target.style.boxShadow = '0 4px 3px gray';
-      e.target.style.background = 'gray';
+      e.target.style.background = 'red';
     }
   };
 
@@ -390,16 +390,23 @@ const Industries: NextPage = () => {
     // console.log('puzzleTake', puzzleTake);
     // const puzzlePush = currentSet[0].arrayStoragePuzzleWood.push(puzzleTake);
     // console.log('puzzlePush', puzzlePush);
+    /*const newPuzzle: any = [];
+    console.log('newPuzzle', newPuzzle);
     currentSet[0].arrayStoragePuzzleWood.forEach((remotePuzzle) => {
       if (remotePuzzle.idPuzzlePiece !== puzzleTake?.idPuzzlePiece) {
-        currentSet[0].arrayStoragePuzzleWood.push(puzzleTake);
+        newPuzzle.push(puzzleTake)
+        // currentSet[0].arrayStoragePuzzleWood.splice(woodItem, 1, puzzleTake);
         // const currentIndex = remotePuzzle.idPuzzlePiece.indexOf(woodItem);
         // currentSet[0].arrayStoragePuzzleWood.splice(woodItem, 0, currentIndex);
         // console.log('currentSet[0].arrayStoragePuzzleWood', currentSet[0].arrayStoragePuzzleWood);
       } else {
         console.log('не записал');
       }
-    });
+    });*/
+    // const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(puzzleTake);
+    // currentSet[0]?.arrayStoragePuzzleWood.splice(woodItem, 0, currentIndex);
+    currentSet[0].arrayStoragePuzzleWood.unshift(puzzleTake);
+    setCurrentSet(currentSet);
   };
 
   const dragEndHandler = (e: any) => {
