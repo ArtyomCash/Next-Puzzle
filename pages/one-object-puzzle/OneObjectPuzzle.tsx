@@ -361,7 +361,7 @@ const OneObjectPuzzle: NextPage = () => {
                 key={`itemItem${itemItem}`}
                 className={styles.item}>
                 <div className={styles.imgFigure}>
-                  <Image width={100} height={100} src={item.img} alt='Business analysis' />
+                  <Image width={200} height={200} src={item.img} alt='Business analysis' />
                 </div>
               </div>
             ))}
