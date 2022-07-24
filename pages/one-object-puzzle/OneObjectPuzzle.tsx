@@ -226,13 +226,14 @@ const OneObjectPuzzle: NextPage = () => {
   const dropHandler = (e: any, board: any, item: any) => {
     e.preventDefault();
     // получаем индекс в массиве у текущей карточки
-    const currentIndex = currentBoard.items.indexOf(currentItem);
+    // const currentIndex = currentBoard.items.indexOf(currentItem);
     // удаляем элемент с текущей доски
-    currentBoard.items.splice(currentIndex, 1);
+    // currentBoard.items.splice(currentIndex, 1);
     // удаляем индекс элемента над которым держим карточку
     const dropIndex = board.items.indexOf(item);
     board.items.splice(dropIndex + 1, 0, currentItem); //currentItem - вставляем карточку после удалённых элементов
     // board.items.splice(-1, currentIndex);
+    // board.items.splice(-1, 1);
     // setBoards - вызываем функцию для того чтобы изменить состояние
     setBoards(
       boards.map((b) => {
@@ -246,6 +247,7 @@ const OneObjectPuzzle: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
+    // console.log('item>>', item);
   };
 
   const dropCardHandler = (e: any, board: any) => {
@@ -255,8 +257,38 @@ const OneObjectPuzzle: NextPage = () => {
     // удаляем элемент с текущей доски
     currentBoard.items.splice(currentIndex, 1);
     // board.items.splice(-1, 1);
-
     // функция состояния
+    /*board.items.filter((copyElement: any) => {
+      const type = typeof copyElement.id;
+      const objs: any = [];
+      console.log('objs>>>>>', objs);
+      if (type in board.items) {
+        return board.items[type].hasOwnProperty(copyElement.id) ? false : (board.items[type][copyElement.id] = true);
+      } else {
+        return objs.indexOf(copyElement.id) >= 0 ? false : objs.pop(copyElement.id);
+      }
+      console.log('copyElement', copyElement.id);
+      /!*if (copyElement.id === copyElement.id) {
+        const deletePuzzle = board.items.indexOf(copyElement);
+        board.items.pop(deletePuzzle);
+        console.log('удалить');
+      } else {
+        console.log('не удалить');
+      }
+      console.log('copyElement', copyElement.id);*!/
+    });*/
+    // console.log('новый массив', board.items);
+
+    const filteredArray: any = [];
+    // setCurrentBoard(filteredArray);
+    board.items.filter((item: any) => {
+      if (!filteredArray.some((element: any) => element.id === item.id)) {
+        filteredArray.push(item);
+      }
+    });
+    board.items = filteredArray;
+    // console.log('новый массив', filteredArray);
+
     setBoards(
       boards.map((b) => {
         if (b.id === board.id) {
@@ -269,7 +301,12 @@ const OneObjectPuzzle: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
-    console.log('drop', board);
+    console.log('board.items', board.items);
+
+    /*board.items.filter(function (currentBoard: any, pos: any) {
+      return currentBoard.id.indexOf(currentBoard.id) === pos;
+    });*/
+    console.log('currentBoard>>>', currentBoard);
   };
 
   return (
@@ -285,8 +322,7 @@ const OneObjectPuzzle: NextPage = () => {
             className={styles.board}
             key={`boardsIndex_${boardsIndex}`}
             onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropCardHandler(e, board)}
-          >
+            onDrop={(e) => dropCardHandler(e, board)}>
             <div className={styles.boardTitle}>{board.title}</div>
             {board.items.map((item, itemItem) => (
               <div
@@ -294,8 +330,8 @@ const OneObjectPuzzle: NextPage = () => {
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, board, item)}
                 onDragEnd={(e) => dragEndHandler(e)}
-                // onDrop={(e) => dropHandler(e, board, item)} // если закоментировать, то не дублируется задача
-                // className={styles.todo}
+                onDrop={(e) => dropHandler(e, board, item)} // если закоментировать, то не дублируется задача
+                // // className={styles.todo}
                 draggable={true}
                 key={`itemItem${itemItem}`}
                 className={styles.item}>
