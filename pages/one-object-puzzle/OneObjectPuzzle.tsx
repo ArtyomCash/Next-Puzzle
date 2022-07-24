@@ -232,9 +232,6 @@ const OneObjectPuzzle: NextPage = () => {
     // удаляем индекс элемента над которым держим карточку
     const dropIndex = board.items.indexOf(item);
     board.items.splice(dropIndex + 1, 0, currentItem); //currentItem - вставляем карточку после удалённых элементов
-    // board.items.splice(-1, currentIndex);
-    // board.items.splice(-1, 1);
-    // setBoards - вызываем функцию для того чтобы изменить состояние
     setBoards(
       boards.map((b) => {
         if (b.id === board.id) {
@@ -256,28 +253,6 @@ const OneObjectPuzzle: NextPage = () => {
     const currentIndex = currentBoard.items.indexOf(currentItem);
     // удаляем элемент с текущей доски
     currentBoard.items.splice(currentIndex, 1);
-    // board.items.splice(-1, 1);
-    // функция состояния
-    /*board.items.filter((copyElement: any) => {
-      const type = typeof copyElement.id;
-      const objs: any = [];
-      console.log('objs>>>>>', objs);
-      if (type in board.items) {
-        return board.items[type].hasOwnProperty(copyElement.id) ? false : (board.items[type][copyElement.id] = true);
-      } else {
-        return objs.indexOf(copyElement.id) >= 0 ? false : objs.pop(copyElement.id);
-      }
-      console.log('copyElement', copyElement.id);
-      /!*if (copyElement.id === copyElement.id) {
-        const deletePuzzle = board.items.indexOf(copyElement);
-        board.items.pop(deletePuzzle);
-        console.log('удалить');
-      } else {
-        console.log('не удалить');
-      }
-      console.log('copyElement', copyElement.id);*!/
-    });*/
-    // console.log('новый массив', board.items);
 
     const filteredArray: any = [];
     // setCurrentBoard(filteredArray);
@@ -287,7 +262,6 @@ const OneObjectPuzzle: NextPage = () => {
       }
     });
     board.items = filteredArray;
-    // console.log('новый массив', filteredArray);
 
     setBoards(
       boards.map((b) => {
@@ -301,12 +275,6 @@ const OneObjectPuzzle: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
-    console.log('board.items', board.items);
-
-    /*board.items.filter(function (currentBoard: any, pos: any) {
-      return currentBoard.id.indexOf(currentBoard.id) === pos;
-    });*/
-    console.log('currentBoard>>>', currentBoard);
   };
 
   return (
@@ -330,7 +298,7 @@ const OneObjectPuzzle: NextPage = () => {
                 onDragLeave={(e) => dragLeaveHandler(e)}
                 onDragStart={(e) => dragStartHandler(e, board, item)}
                 onDragEnd={(e) => dragEndHandler(e)}
-                onDrop={(e) => dropHandler(e, board, item)} // если закоментировать, то не дублируется задача
+                onDrop={(e) => dropHandler(e, board, item)}
                 // // className={styles.todo}
                 draggable={true}
                 key={`itemItem${itemItem}`}
