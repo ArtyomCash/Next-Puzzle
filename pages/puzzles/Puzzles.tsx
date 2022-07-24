@@ -42,6 +42,7 @@ const Puzzles: NextPage = () => {
       // img: wood_01.src,
       items: [
         { id: 1, title: 'Пойти в магазин', img: wood_01.src },
+        { id: 15, title: 'Отрендоорить', img: wood_15.src },
         { id: 2, title: 'выкинуть мусор', img: wood_02.src },
         { id: 3, title: 'Покушать', img: wood_03.src },
         { id: 4, title: 'Код ревью', img: wood_04.src },
@@ -55,7 +56,6 @@ const Puzzles: NextPage = () => {
         { id: 12, title: 'Отрендоорить', img: wood_12.src },
         { id: 13, title: 'Отрендоорить', img: wood_13.src },
         { id: 14, title: 'Отрендоорить', img: wood_14.src },
-        { id: 15, title: 'Отрендоорить', img: wood_15.src },
         { id: 16, title: 'Отрендоорить', img: wood_16.src },
       ],
       finishedPuzzle: [],
@@ -182,8 +182,8 @@ const Puzzles: NextPage = () => {
   const keyPuzzle: any = [];
   let victory;
 
-  console.log('keyPuzzle>>>>', keyPuzzle);
-  console.log('idPuzzle', idPuzzle);
+  // console.log('keyPuzzle>>>>', keyPuzzle);
+  // console.log('idPuzzle', idPuzzle);
 
   const findOverwriteIntoNewArray = (boards: any) => {
     boards.forEach((puzzleInArray: any) => {
@@ -249,6 +249,7 @@ const Puzzles: NextPage = () => {
 
   // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState<any>(null);
+  console.log('currentBoard', currentBoard);
   const [currentItem, setCurrentItem] = useState(null);
 
   const dragOverHandler = (e: any) => {
@@ -295,9 +296,27 @@ const Puzzles: NextPage = () => {
     e.target.style.boxShadow = 'none';
   };
 
-  const dragStartHandlerDesktop = (e: any, board: any, item: any) => {
-    console.log('взял');
-
+  const dragStartHandlerDesktop = (e: any, itemBoard: any) => {
+    console.log('board', itemBoard);
+    const currentIndex = currentBoard.items.indexOf(itemBoard);
+    // удаляем элемент с текущей доски
+    console.log('currentIndex', currentIndex);
+    currentBoard.finishedPuzzle.splice(currentIndex, 1);
+    /* currentBoard.finishedPuzzle.splice(currentIndex, 1);
+    console.log('deleteOb>>>', currentBoard.finishedPuzzle);
+    // currentBoard.items.splice(currentIndex, 1);
+    // функция состояния
+    setBoards(
+      boards.map((b) => {
+        if (b.id !== itemBoard.id) {
+          return itemBoard;
+        }
+        if (b.id !== currentBoard.id) {
+          return currentBoard;
+        }
+        return b;
+      })
+    );*/
   };
 
   const dropCardHandler = (e: any, board: any) => {
@@ -320,6 +339,22 @@ const Puzzles: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
+  };
+
+  const dropHandlerDesktop = (e: any, board: any, item: any) => {
+    const currentIndex = currentBoard.items.indexOf(item);
+    currentBoard.finishedPuzzle.splice(currentIndex, 1);
+    setBoards(
+      boards.map((b) => {
+        if (b.id === board.id) {
+          return board;
+        }
+        if (b.id === currentBoard.id) {
+          return currentBoard;
+        }
+        return b;
+      })
+    );
   };
 
   return (
@@ -369,18 +404,19 @@ const Puzzles: NextPage = () => {
               onDragOver={(e) => dragOverHandler(e)}
               onDrop={(e) => dropCardHandler(e, board)}>
               {/*<div className={styles.boardTitle}>{board.title}</div>*/}
-              {board.finishedPuzzle.map((item, itemBoard) => (
+              {board.finishedPuzzle.map((itemDesktop, itemBoard) => (
                 <div
                   key={`itemBoard_${itemBoard}`}
                   onDragOver={(e) => dragOverHandler(e)}
                   onDragLeave={(e) => dragLeaveHandler(e)}
-                  onDragStart={(e) => dragStartHandlerDesktop(e, board, item)}
+                  onDragStart={(e) => dragStartHandlerDesktop(e, itemDesktop)}
+                  // onDragStart={(e) => dragStartHandler(e, board, itemDesktop)}
                   onDragEnd={(e) => dragEndHandler(e)}
-                  onDrop={(e) => dropHandler(e, board, item)}
+                  onDrop={(e) => dropHandlerDesktop(e, board, itemDesktop)}
                   draggable={true}
                   className={styles.item}>
                   <div className={styles.imgFigure}>
-                    <Image width={200} height={200} src={item.img} alt='Business analysis' />
+                    <Image width={200} height={200} src={itemDesktop.img} alt='Business analysis' />
                   </div>
                 </div>
               ))}
