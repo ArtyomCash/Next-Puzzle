@@ -295,6 +295,11 @@ const Puzzles: NextPage = () => {
     e.target.style.boxShadow = 'none';
   };
 
+  const dragStartHandlerDesktop = (e: any, board: any, item: any) => {
+    console.log('взял');
+
+  };
+
   const dropCardHandler = (e: any, board: any) => {
     // добавляем задачу в новую доску
     board.finishedPuzzle.push(currentItem);
@@ -334,7 +339,8 @@ const Puzzles: NextPage = () => {
                 key={`boardsIndex_${boardsIndex}`}
                 className={boardsIndex === 0 ? styles.boardWrapper : styles.board}
                 onDragOver={(e) => dragOverHandler(e)}
-                onDrop={(e) => dropCardHandler(e, board)}>
+                // onDrop={(e) => dropCardHandler(e, board)}
+              >
                 <div className={styles.boardTitle}>{board.title}</div>
                 {board.items.map((item, itemItem) => (
                   <div
@@ -368,7 +374,7 @@ const Puzzles: NextPage = () => {
                   key={`itemBoard_${itemBoard}`}
                   onDragOver={(e) => dragOverHandler(e)}
                   onDragLeave={(e) => dragLeaveHandler(e)}
-                  onDragStart={(e) => dragStartHandler(e, board, item)}
+                  onDragStart={(e) => dragStartHandlerDesktop(e, board, item)}
                   onDragEnd={(e) => dragEndHandler(e)}
                   onDrop={(e) => dropHandler(e, board, item)}
                   draggable={true}
