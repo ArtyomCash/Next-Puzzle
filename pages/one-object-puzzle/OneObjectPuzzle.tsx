@@ -171,30 +171,88 @@ const OneObjectPuzzle: NextPage = () => {
   const [boards, setBoards] = useState([
     {
       id: 1,
-      title: 'Сделать',
       items: [
-        { id: 1, title: '1   Пойти в магазин' },
-        { id: 2, title: '2   выкинуть мусор' },
-        { id: 3, title: '3   Покушать' },
+        { id: 1, img: wood_01.src },
+        { id: 15, img: wood_15.src },
+        { id: 2, img: wood_02.src },
+        { id: 3, img: wood_03.src },
+        { id: 4, img: wood_04.src },
+        { id: 5, img: wood_05.src },
+        { id: 6, img: wood_06.src },
+        { id: 7, img: wood_07.src },
+        { id: 8, img: wood_08.src },
+        { id: 9, img: wood_09.src },
+        { id: 10, img: wood_10.src },
+        { id: 11, img: wood_11.src },
+        { id: 12, img: wood_12.src },
+        { id: 13, img: wood_13.src },
+        { id: 14, img: wood_14.src },
+        { id: 16, img: wood_16.src },
       ],
     },
     {
       id: 2,
-      title: 'Проверить',
-      items: [
-        { id: 4, title: '4   Код ревью' },
-        { id: 5, title: '5   Задача на факториал' },
-        { id: 6, title: '6   Задача на фибоначи' },
-      ],
+      items: [],
     },
     {
       id: 3,
-      title: 'Сделано',
-      items: [
-        { id: 7, title: '7   Снять видео' },
-        { id: 8, title: '8   Смонтировать' },
-        { id: 9, title: '9   Отрендоорить' },
-      ],
+      items: [],
+    },
+    {
+      id: 4,
+      items: [],
+    },
+    {
+      id: 5,
+      items: [],
+    },
+    {
+      id: 6,
+      items: [],
+    },
+    {
+      id: 7,
+      items: [],
+    },
+    {
+      id: 8,
+      items: [],
+    },
+    {
+      id: 9,
+      items: [],
+    },
+    {
+      id: 10,
+      items: [],
+    },
+    {
+      id: 11,
+      items: [],
+    },
+    {
+      id: 12,
+      items: [],
+    },
+    {
+      id: 13,
+      items: [],
+    },
+    {
+      id: 14,
+      items: [],
+    },
+    {
+      id: 15,
+      items: [],
+    },
+    {
+      id: 16,
+      items: [],
+    },
+    {
+      id: 17,
+      items: [],
     },
   ]);
 
@@ -291,7 +349,6 @@ const OneObjectPuzzle: NextPage = () => {
             key={`boardsIndex_${boardsIndex}`}
             onDragOver={(e) => dragOverHandler(e)}
             onDrop={(e) => dropCardHandler(e, board)}>
-            <div className={styles.boardTitle}>{board.title}</div>
             {board.items.map((item, itemItem) => (
               <div
                 onDragOver={(e) => dragOverHandler(e)}
@@ -303,7 +360,9 @@ const OneObjectPuzzle: NextPage = () => {
                 draggable={true}
                 key={`itemItem${itemItem}`}
                 className={styles.item}>
-                {item.title}
+                <div className={styles.imgFigure}>
+                  <Image width={100} height={100} src={item.img} alt='Business analysis' />
+                </div>
               </div>
             ))}
           </div>
