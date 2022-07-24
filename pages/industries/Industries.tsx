@@ -36,7 +36,7 @@ const puzzleArray = [
           },
           {
             idPuzzlePiece: 1,
-            imgPuzzlePiece: wood_02.src,
+            imgPuzzlePiece: wood_15.src,
           },
           {
             idPuzzlePiece: 2,
@@ -88,7 +88,7 @@ const puzzleArray = [
           },
           {
             idPuzzlePiece: 14,
-            imgPuzzlePiece: wood_15.src,
+            imgPuzzlePiece: wood_02.src,
           },
           {
             idPuzzlePiece: 15,
@@ -300,6 +300,8 @@ const arrayCurrentSet = activePuzzleCopy[1]?.storagePuzzle;
 const Industries: NextPage = () => {
   // общий массив
   const [currentSet, setCurrentSet] = useState(arrayCurrentSet);
+  const [itemIndex, setItemIndex] = useState();
+
   // console.log('куда записывать', currentSet[0]?.arrayStoragePuzzleWood);
 
   // пазл который изъяли
@@ -324,12 +326,14 @@ const Industries: NextPage = () => {
 
   const dragStartHandler = (e: any, woodItem: any) => {
     setPuzzleTake(woodItem);
+    const woodItemIndex = puzzleWood.indexOf(woodItem);
+    setItemIndex(woodItemIndex);
+
     // const currentIndex = currentSet[0]?.arrayStoragePuzzleWood.indexOf(woodItem);
     // удаляем пазл из массива
     // const puzzleInLeftBoard = currentSet[0]?.arrayStoragePuzzleWood.splice(currentIndex, 1);
     // console.log('puzzleInLeftBoard', puzzleInLeftBoard);
     const puzzleInLeftBoard = currentSet[0]?.arrayStoragePuzzleWood.splice(woodItem, 1);
-
   };
 
   const dropHandler = (e: any, woodItem: any) => {
@@ -345,8 +349,11 @@ const Industries: NextPage = () => {
     console.log('arrayStoragePuzzleWood', currentSet[0].arrayStoragePuzzleWood);
     console.log('collectedElements', currentSet[0].collectedElements);
     let puzzleControl;
+
     // console.log('puzzleControl', puzzleControl);
-    currentSet[0].collectedElements.unshift(puzzleTake);
+    // currentSet[0].collectedElements.unshift(puzzleTake);
+    currentSet[0].collectedElements.splice(itemIndex, 1, puzzleTake);
+    // setCurrentSet(currentSet);
     // setCurrentSet(currentSet);
     // console.log('collectedElements>>>', currentSet[0].collectedElements);
   };

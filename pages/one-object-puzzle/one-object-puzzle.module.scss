@@ -1,2 +1,7 @@
 @use 'assets/styles/_vars' as *;
 @use 'assets/styles/_mixins' as *;
+
+.leftPuzzles {
+  max-width: 1000px;
+  margin: 0 auto;
+}
