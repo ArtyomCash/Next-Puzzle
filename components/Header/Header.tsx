@@ -14,6 +14,7 @@ const mockMenu: menuItemType[] = [
   { name: 'Industries', id: 'industries', href: '/industries', className: 'menuItem' },
   { name: 'Projects', id: 'technologies', href: '/projects', className: 'menuItem' },
   { name: 'Puzzle-tow-array', id: 'no_id', href: '/puzzle-two-array', className: 'menuItem' },
+  { name: 'One object two arrays', id: 'no_id', href: '/one-object-puzzle', className: 'menuItem' },
   { name: 'Contacts', id: 'no_id', href: '/contacts', className: 'menuItem' },
 ];
 
