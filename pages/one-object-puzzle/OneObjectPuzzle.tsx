@@ -256,6 +256,11 @@ const OneObjectPuzzle: NextPage = () => {
     },
   ]);
 
+  const randomImg = (a: any, b: any) => {
+    return Math.random() - 0.5;
+  };
+  boards[0].items.sort(randomImg);
+
   // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
