@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import styles from './one-object-puzzle.module.scss';
 import React, { useState } from 'react';
+import Head from 'next/head';
 import wood_01 from '../../assets/Puzzle/wood/wood_01.jpg';
 import wood_15 from '../../assets/Puzzle/wood/wood_15.jpg';
 import wood_02 from '../../assets/Puzzle/wood/wood_02.jpg';
@@ -166,21 +167,145 @@ const puzzleSet = [
 ];
 
 const OneObjectPuzzle: NextPage = () => {
+  // массив досок
+  const [boards, setBoards] = useState([
+    {
+      id: 1,
+      title: 'Сделать',
+      items: [
+        { id: 1, title: '1   Пойти в магазин' },
+        { id: 2, title: '2   выкинуть мусор' },
+        { id: 3, title: '3   Покушать' },
+      ],
+    },
+    {
+      id: 2,
+      title: 'Проверить',
+      items: [
+        { id: 4, title: '4   Код ревью' },
+        { id: 5, title: '5   Задача на факториал' },
+        { id: 6, title: '6   Задача на фибоначи' },
+      ],
+    },
+    {
+      id: 3,
+      title: 'Сделано',
+      items: [
+        { id: 7, title: '7   Снять видео' },
+        { id: 8, title: '8   Смонтировать' },
+        { id: 9, title: '9   Отрендоорить' },
+      ],
+    },
+  ]);
+
+  // состояние для текущей доски и для текущего состояния
+  const [currentBoard, setCurrentBoard] = useState(null);
+  const [currentItem, setCurrentItem] = useState(null);
+
+  const dragOverHandler = (e: any) => {
+    e.preventDefault();
+    if (e.target.className == 'puzzles_item__WeSE_') {
+      // поиск по классу не надёжный добавить id
+      e.target.style.boxShadow = '0 4px 3px gray';
+    }
+  };
+
+  const dragLeaveHandler = (e: any) => {
+    e.target.style.boxShadow = 'none';
+  };
+
+  const dragStartHandler = (e: any, board: any, item: any) => {
+    setCurrentBoard(board);
+    setCurrentItem(item);
+    console.log('drag', board);
+  };
+
+  const dragEndHandler = (e: any) => {
+    e.target.style.boxShadow = 'none';
+  };
+  const dropHandler = (e: any, board: any, item: any) => {
+    e.preventDefault();
+    // получаем индекс в массиве у текущей карточки
+    const currentIndex = currentBoard.items.indexOf(currentItem);
+    // удаляем элемент с текущей доски
+    currentBoard.items.splice(currentIndex, 1);
+    // удаляем индекс элемента над которым держим карточку
+    const dropIndex = board.items.indexOf(item);
+    board.items.splice(dropIndex + 1, 0, currentItem); //currentItem - вставляем карточку после удалённых элементов
+    // board.items.splice(-1, currentIndex);
+    // setBoards - вызываем функцию для того чтобы изменить состояние
+    setBoards(
+      boards.map((b) => {
+        if (b.id === board.id) {
+          return board;
+        }
+        if (b.id === currentBoard.id) {
+          return currentBoard;
+        }
+        return b;
+      })
+    );
+    e.target.style.boxShadow = 'none';
+  };
+
+  const dropCardHandler = (e: any, board: any) => {
+    // добавляем задачу в новую доску
+    board.items.push(currentItem);
+    const currentIndex = currentBoard.items.indexOf(currentItem);
+    // удаляем элемент с текущей доски
+    currentBoard.items.splice(currentIndex, 1);
+    // board.items.splice(-1, 1);
+
+    // функция состояния
+    setBoards(
+      boards.map((b) => {
+        if (b.id === board.id) {
+          return board;
+        }
+        if (b.id === currentBoard.id) {
+          return currentBoard;
+        }
+        return b;
+      })
+    );
+    e.target.style.boxShadow = 'none';
+    console.log('drop', board);
+  };
+
   return (
-    <section className={styles.wrapper}>
-      <div className={styles.leftPuzzles}>
-        {puzzleSet[0].disassembledPuzzles.map((disassembledPuzzle, disassembledPuzzleIndex) => (
-          <div key={`disassembledPuzzleIndex_${disassembledPuzzleIndex}`}>
-            <div className={styles.imgFigure}>
-              <Image width={200} height={200} src={disassembledPuzzle.img} alt='Business analysis' />
-            </div>
-            <div className={styles.imgFigure}>
-              <Image width={200} height={200} src={disassembledPuzzle.img} alt='Business analysis' />
-            </div>
+    <div id='up' className={styles.cases}>
+      <Head>
+        <title>Puzzles</title>
+        <meta name='Description of flexyti Our Projects' content='Content of flexyti Our Projects' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <div className={styles.app}>
+        {boards.map((board, boardsIndex) => (
+          <div
+            className={styles.board}
+            key={`boardsIndex_${boardsIndex}`}
+            onDragOver={(e) => dragOverHandler(e)}
+            onDrop={(e) => dropCardHandler(e, board)}
+          >
+            <div className={styles.boardTitle}>{board.title}</div>
+            {board.items.map((item, itemItem) => (
+              <div
+                onDragOver={(e) => dragOverHandler(e)}
+                onDragLeave={(e) => dragLeaveHandler(e)}
+                onDragStart={(e) => dragStartHandler(e, board, item)}
+                onDragEnd={(e) => dragEndHandler(e)}
+                // onDrop={(e) => dropHandler(e, board, item)} // если закоментировать, то не дублируется задача
+                // className={styles.todo}
+                draggable={true}
+                key={`itemItem${itemItem}`}
+                className={styles.item}>
+                {item.title}
+              </div>
+            ))}
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 
