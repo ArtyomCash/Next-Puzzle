@@ -37,7 +37,178 @@ import wood_14 from 'assets/Puzzle/wood/Puzzle_Wood/wood_puzzle_14.png';
 import wood_16 from 'assets/Puzzle/wood/Puzzle_Wood/wood_puzzle_16.png';*/
 import Image from 'next/image';
 
-const puzzleSet = [
+const puzzleArray = [
+  { namePlayer: 'Семён', idPlayer: 1, password: '1' },
+  {
+    storagePuzzle: [
+      {
+        idStoragePuzzle: 1,
+        assembled: false,
+        puzzleName: 'One Wood',
+        reward: false,
+        madePuzzlesReady: [],
+        puzzleSet: [
+          {
+            id: 0,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [
+              { id: 1, img: wood_01.src },
+              { id: 2, img: wood_02.src },
+              { id: 3, img: wood_03.src },
+              { id: 4, img: wood_04.src },
+              { id: 5, img: wood_05.src },
+              { id: 6, img: wood_06.src },
+              { id: 7, img: wood_07.src },
+              { id: 8, img: wood_08.src },
+              { id: 9, img: wood_09.src },
+              { id: 10, img: wood_10.src },
+              { id: 11, img: wood_11.src },
+              { id: 12, img: wood_12.src },
+              { id: 13, img: wood_13.src },
+              { id: 14, img: wood_14.src },
+              { id: 15, img: wood_15.src },
+              { id: 16, img: wood_16.src },
+            ],
+            madePuzzles: [],
+          },
+          {
+            id: 1,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 2,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 3,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 4,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 5,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 6,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 7,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 8,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 9,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 10,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 11,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 12,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 13,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 14,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 15,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          {
+            id: 16,
+            namePuzzle: 'Wood',
+            assembled: false,
+            disassembledPuzzles: [],
+            madePuzzles: [],
+          },
+          /*{
+          id: 17,
+          namePuzzle: 'Wood',
+          assembled: false,
+          disassembledPuzzles: [],
+          madePuzzles: [],
+        },*/
+        ],
+      },
+    ],
+  },
+];
+// console.log('новая версия puzzleArray ', puzzleArray[1].storagePuzzle[0].puzzleSet);
+// console.log('новая версия puzzleArray ', puzzleArray[1].storagePuzzle[0].puzzleSet);
+const workingArray = puzzleArray[1].storagePuzzle[0].puzzleSet;
+
+// const madePuzzlesArray = puzzleArray[0].madePuzzlesReady;
+
+// перебор массива чтобы вычислить победу
+
+// console.log('idPuzzle>>>>', idPuzzle);
+// console.log('keyPuzzle>>>', keyPuzzle);
+// console.log('let victory;>>>', victory);
+
+/*const puzzleSet = [
   {
     id: 0,
     namePuzzle: 'Wood',
@@ -174,14 +345,15 @@ const puzzleSet = [
     disassembledPuzzles: [],
     madePuzzles: [],
   },
-  /*{
+  /!*{
     id: 17,
     namePuzzle: 'Wood',
     assembled: false,
     disassembledPuzzles: [],
     madePuzzles: [],
-  },*/
-];
+  },*!/
+];*/
+// console.log('старая версия версия puzzleArray ', puzzleSet);
 
 const OneObjectPuzzle: NextPage = () => {
   // массив досок
@@ -273,14 +445,64 @@ const OneObjectPuzzle: NextPage = () => {
     },
   ]);*/
 
-  const [boards, setBoards] = useState(puzzleSet);
-  console.log('boards>>>', boards);
+  const madePuzzlesArray = puzzleArray[1].storagePuzzle[0].madePuzzlesReady;
+  console.log('madePuzzlesArray', madePuzzlesArray);
 
+  const [boards, setBoards] = useState(workingArray);
+  // заносим пазлы для того чтобы понять собраны или нет
+  // const [madePuzzles, setMadePuzzles] = useState(madePuzzlesArray);
+  // console.log('madePuzzles', madePuzzles);
+  // console.log('boards>>>', boards);
+  // -----------------------------------------
   // пазлы выпадают случайным образом
   /*const randomImg = (a: any, b: any) => {
     return Math.random() - 0.5;
   };
   boards[0].disassembledPuzzles.sort(randomImg);*/
+  // ------------------------------------------
+  const idPuzzle: any = [];
+  console.log('idPuzzle11111111111', idPuzzle);
+  const keyPuzzle: any = [];
+  console.log('keyPuzzle222222', keyPuzzle);
+  let victory;
+  // const [victory, setVictory] = useState(false);
+  // console.log('victory3333333', victory);
+  /* let victory;
+  // console.log('victory3333333', victory);
+  if (victory) {
+    console.log('victory', victory);
+  } else {
+    console.log('СОБРАТЬ');
+  }*/
+
+  const findOverwriteIntoNewArray = (madePuzzles: any) => {
+    // console.log('madePuzzles>>>', madePuzzles);
+    madePuzzles.forEach((puzzleInArray: any) => {
+      // console.log('puzzleInArray>>>', puzzleInArray.id);
+      idPuzzle.push(puzzleInArray.id - 1);
+    });
+    Object.keys(idPuzzle).find((key, index) => {
+      keyPuzzle.push(index);
+      // console.log('keyPuzzle', keyPuzzle);
+    });
+  };
+  findOverwriteIntoNewArray(madePuzzlesArray);
+
+  const puzzleInPlaceOrNot = (idPuzzle: any, keyPuzzle: any) => {
+    console.log('idPuzzle.length', idPuzzle.length);
+    console.log('idPuzzle.toString()', idPuzzle.toString());
+    console.log('keyPuzzle.toString()', keyPuzzle.toString());
+    if (idPuzzle.length === 16 && idPuzzle.toString() === keyPuzzle.toString()) {
+      victory = true;
+      // setVictory(true);
+      console.log('Победа');
+      // }
+    } else {
+      console.log('меньше 16ти');
+    }
+  };
+  puzzleInPlaceOrNot(idPuzzle, keyPuzzle);
+  // -------------------------------
 
   // состояние для текущей доски и для текущего состояния
   const [currentBoard, setCurrentBoard] = useState(null);
@@ -305,6 +527,8 @@ const OneObjectPuzzle: NextPage = () => {
     // boards[0].disassembledPuzzles.splice(item, 1);
     setCurrentBoard(board);
     setCurrentItem(item);
+    // setMadePuzzles(item);
+    // setMadePuzzles(item);
     // animation(item, itemItem);
     // e.target.style.transform = 'translateY(0px)';
     // console.log('drag', board);
@@ -315,6 +539,8 @@ const OneObjectPuzzle: NextPage = () => {
   };
   const dropHandler = (e: any, board: any, item: any) => {
     e.preventDefault();
+    // console.log('item>>>>>>>>>', item);
+    // boards[1].madePuzzles.push(item);
     // e.target.style.transform = 'translateY(0px)';
     // получаем индекс в массиве у текущей карточки
     // const currentIndex = currentBoard.items.indexOf(currentItem);
@@ -341,8 +567,13 @@ const OneObjectPuzzle: NextPage = () => {
   const dropCardHandler = (e: any, board: any) => {
     // добавляем задачу в новую доску
     e.target.style.transform = 'translateY(0px)';
+    // записываю во второй массив картинку которая на поле
     board.disassembledPuzzles.push(currentItem);
+
     const currentIndex = currentBoard.disassembledPuzzles.indexOf(currentItem);
+    // console.log('madePuzzlesArray', madePuzzlesArray);
+    // console.log('currentItem', currentItem);
+    madePuzzlesArray?.push(currentItem);
     // удаляем элемент с текущей доски
     currentBoard.disassembledPuzzles.splice(currentIndex, 1);
 
@@ -389,33 +620,37 @@ const OneObjectPuzzle: NextPage = () => {
         <meta name='Description of flexyti Our Projects' content='Content of flexyti Our Projects' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className={styles.app}>
-        {boards.map((board, boardsIndex) => (
-          <div
-            className={styles.board}
-            key={`boardsIndex_${boardsIndex}`}
-            onDragOver={(e) => dragOverHandler(e)}
-            onDrop={(e) => dropCardHandler(e, board)}>
-            {board.disassembledPuzzles.map((item, itemItem) => (
-              <div
-                onDragOver={(e) => dragOverHandler(e)}
-                onDragLeave={(e) => dragLeaveHandler(e)}
-                onDragStart={(e) => dragStartHandler(e, board, item, itemItem)}
-                onDragEnd={(e) => dragEndHandler(e)}
-                onDrop={(e) => dropHandler(e, board, item)}
-                // // className={styles.todo}
-                draggable={true}
-                key={`itemItem${itemItem}`}
-                // className={animationActive ? styles.active : styles.item}
-                className={styles.item}>
-                <div className={styles.imgFigure}>
-                  <Image width={200} height={200} src={item.img} alt='Business analysis' />
+      <section>
+        {victory ? <div>Вы молодец!</div> : <div>собрать пазл</div>}
+        <div className={styles.app}>
+          {boards.map((board, boardsIndex) => (
+            <div
+              className={styles.board}
+              key={`boardsIndex_${boardsIndex}`}
+              onDragOver={(e) => dragOverHandler(e)}
+              onDrop={(e) => dropCardHandler(e, board)}>
+              {board.disassembledPuzzles.map((item, itemItem) => (
+                <div
+                  onDragOver={(e) => dragOverHandler(e)}
+                  onDragLeave={(e) => dragLeaveHandler(e)}
+                  onDragStart={(e) => dragStartHandler(e, board, item, itemItem)}
+                  onDragEnd={(e) => dragEndHandler(e)}
+                  onDrop={(e) => dropHandler(e, board, item)}
+                  // // className={styles.todo}
+                  draggable={true}
+                  key={`itemItem${itemItem}`}
+                  // className={animationActive ? styles.active : styles.item}
+                  className={styles.item}>
+                  <div className={styles.imgFigure}>
+                    <Image width={200} height={200} src={item.img} alt='Business analysis' />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 };
