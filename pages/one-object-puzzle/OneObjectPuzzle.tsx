@@ -345,8 +345,20 @@ const workingArray = puzzleArray[1].storagePuzzle[0].puzzleSet;
 ];*/
 
 const OneObjectPuzzle: NextPage = () => {
-
   const madePuzzlesArray = puzzleArray[1].storagePuzzle[0].madePuzzlesReady;
+
+  // const arrayWithoutDuplicates = [];
+  const uniquePuzzle: any = [];
+  console.log('filteredArray7777777', uniquePuzzle);
+  const removeDuplicates = (madePuzzlesArray: any) => {
+    madePuzzlesArray.filter((item: any) => {
+      if (!uniquePuzzle.some((element: any) => element.id === item.id)) {
+        uniquePuzzle.push(item);
+      }
+    });
+  };
+  removeDuplicates(madePuzzlesArray);
+
   console.log('madePuzzlesArray', madePuzzlesArray);
 
   const [boards, setBoards] = useState(workingArray);
@@ -375,7 +387,7 @@ const OneObjectPuzzle: NextPage = () => {
       keyPuzzle.push(index);
     });
   };
-  findOverwriteIntoNewArray(madePuzzlesArray);
+  findOverwriteIntoNewArray(uniquePuzzle);
 
   const puzzleInPlaceOrNot = (idPuzzle: any, keyPuzzle: any) => {
     console.log('idPuzzle.length', idPuzzle.length);
@@ -520,7 +532,6 @@ const OneObjectPuzzle: NextPage = () => {
           ))}
         </div>
       </section>
-
     </div>
   );
 };
