@@ -196,17 +196,7 @@ const puzzleArray = [
     ],
   },
 ];
-// console.log('новая версия puzzleArray ', puzzleArray[1].storagePuzzle[0].puzzleSet);
-// console.log('новая версия puzzleArray ', puzzleArray[1].storagePuzzle[0].puzzleSet);
 const workingArray = puzzleArray[1].storagePuzzle[0].puzzleSet;
-
-// const madePuzzlesArray = puzzleArray[0].madePuzzlesReady;
-
-// перебор массива чтобы вычислить победу
-
-// console.log('idPuzzle>>>>', idPuzzle);
-// console.log('keyPuzzle>>>', keyPuzzle);
-// console.log('let victory;>>>', victory);
 
 /*const puzzleSet = [
   {
@@ -353,97 +343,8 @@ const workingArray = puzzleArray[1].storagePuzzle[0].puzzleSet;
     madePuzzles: [],
   },*!/
 ];*/
-// console.log('старая версия версия puzzleArray ', puzzleSet);
 
 const OneObjectPuzzle: NextPage = () => {
-  // массив досок
-  /*  const [boards, setBoards] = useState([
-    {
-      id: 1,
-      items: [
-        { id: 1, img: wood_01.src },
-        { id: 15, img: wood_15.src },
-        { id: 2, img: wood_02.src },
-        { id: 3, img: wood_03.src },
-        { id: 4, img: wood_04.src },
-        { id: 5, img: wood_05.src },
-        { id: 6, img: wood_06.src },
-        { id: 7, img: wood_07.src },
-        { id: 8, img: wood_08.src },
-        { id: 9, img: wood_09.src },
-        { id: 10, img: wood_10.src },
-        { id: 11, img: wood_11.src },
-        { id: 12, img: wood_12.src },
-        { id: 13, img: wood_13.src },
-        { id: 14, img: wood_14.src },
-        { id: 16, img: wood_16.src },
-      ],
-    },
-    {
-      id: 2,
-      items: [],
-    },
-    {
-      id: 3,
-      items: [],
-    },
-    {
-      id: 4,
-      items: [],
-    },
-    {
-      id: 5,
-      items: [],
-    },
-    {
-      id: 6,
-      items: [],
-    },
-    {
-      id: 7,
-      items: [],
-    },
-    {
-      id: 8,
-      items: [],
-    },
-    {
-      id: 9,
-      items: [],
-    },
-    {
-      id: 10,
-      items: [],
-    },
-    {
-      id: 11,
-      items: [],
-    },
-    {
-      id: 12,
-      items: [],
-    },
-    {
-      id: 13,
-      items: [],
-    },
-    {
-      id: 14,
-      items: [],
-    },
-    {
-      id: 15,
-      items: [],
-    },
-    {
-      id: 16,
-      items: [],
-    },
-    {
-      id: 17,
-      items: [],
-    },
-  ]);*/
 
   const madePuzzlesArray = puzzleArray[1].storagePuzzle[0].madePuzzlesReady;
   console.log('madePuzzlesArray', madePuzzlesArray);
@@ -465,25 +366,13 @@ const OneObjectPuzzle: NextPage = () => {
   const keyPuzzle: any = [];
   console.log('keyPuzzle222222', keyPuzzle);
   let victory;
-  // const [victory, setVictory] = useState(false);
-  // console.log('victory3333333', victory);
-  /* let victory;
-  // console.log('victory3333333', victory);
-  if (victory) {
-    console.log('victory', victory);
-  } else {
-    console.log('СОБРАТЬ');
-  }*/
 
   const findOverwriteIntoNewArray = (madePuzzles: any) => {
-    // console.log('madePuzzles>>>', madePuzzles);
     madePuzzles.forEach((puzzleInArray: any) => {
-      // console.log('puzzleInArray>>>', puzzleInArray.id);
       idPuzzle.push(puzzleInArray.id - 1);
     });
     Object.keys(idPuzzle).find((key, index) => {
       keyPuzzle.push(index);
-      // console.log('keyPuzzle', keyPuzzle);
     });
   };
   findOverwriteIntoNewArray(madePuzzlesArray);
@@ -494,11 +383,6 @@ const OneObjectPuzzle: NextPage = () => {
     console.log('keyPuzzle.toString()', keyPuzzle.toString());
     if (idPuzzle.length === 16 && idPuzzle.toString() === keyPuzzle.toString()) {
       victory = true;
-      // setVictory(true);
-      console.log('Победа');
-      // }
-    } else {
-      console.log('меньше 16ти');
     }
   };
   puzzleInPlaceOrNot(idPuzzle, keyPuzzle);
@@ -520,18 +404,11 @@ const OneObjectPuzzle: NextPage = () => {
 
   const dragLeaveHandler = (e: any) => {
     e.target.style.boxShadow = 'none';
-    // e.target.style.transform = 'translateY(0px)';
   };
 
   const dragStartHandler = (e: any, board: any, item: any, itemItem: number) => {
-    // boards[0].disassembledPuzzles.splice(item, 1);
     setCurrentBoard(board);
     setCurrentItem(item);
-    // setMadePuzzles(item);
-    // setMadePuzzles(item);
-    // animation(item, itemItem);
-    // e.target.style.transform = 'translateY(0px)';
-    // console.log('drag', board);
   };
 
   const dragEndHandler = (e: any) => {
@@ -539,9 +416,6 @@ const OneObjectPuzzle: NextPage = () => {
   };
   const dropHandler = (e: any, board: any, item: any) => {
     e.preventDefault();
-    // console.log('item>>>>>>>>>', item);
-    // boards[1].madePuzzles.push(item);
-    // e.target.style.transform = 'translateY(0px)';
     // получаем индекс в массиве у текущей карточки
     // const currentIndex = currentBoard.items.indexOf(currentItem);
     // удаляем элемент с текущей доски
@@ -561,24 +435,20 @@ const OneObjectPuzzle: NextPage = () => {
       })
     );
     e.target.style.boxShadow = 'none';
-    // console.log('item>>', item);
   };
 
   const dropCardHandler = (e: any, board: any) => {
-    // добавляем задачу в новую доску
+    // добавляем картинку в новую доску
     e.target.style.transform = 'translateY(0px)';
     // записываю во второй массив картинку которая на поле
     board.disassembledPuzzles.push(currentItem);
 
     const currentIndex = currentBoard.disassembledPuzzles.indexOf(currentItem);
-    // console.log('madePuzzlesArray', madePuzzlesArray);
-    // console.log('currentItem', currentItem);
     madePuzzlesArray?.push(currentItem);
     // удаляем элемент с текущей доски
     currentBoard.disassembledPuzzles.splice(currentIndex, 1);
 
     const filteredArray: any = [];
-    // setCurrentBoard(filteredArray);
     board.disassembledPuzzles.filter((item: any) => {
       if (!filteredArray.some((element: any) => element.id === item.id)) {
         filteredArray.push(item);
